@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}the uplifting scroller project &ndash; view{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block body %}
+<main>
+    {{ scroller['to-recipient-name'] }}
+    <p>this one's for you</p>
+    <p>a quick haiku</p>
+    <p>{{ scroller['line-1'] }}</p>
+    <p>{{ scroller['line-2'] }}</p>
+    <p>{{ scroller['line-3'] }}</p>
+    <p>{{ scroller['long-message'] }}</p>
+    <p>from {{ scroller['from-sender-name'] }}</p>
+</main>
+
+{% endblock %}

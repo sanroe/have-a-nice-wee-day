@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}" />
+    {% endblock %}
+</head>
+<body {% block overflow %}{% endblock %}>
+    {% block header %}
+    <header>
+        <h1><a href="/">the uplifting scroller project</a></h1>
+    </header>
+    {% endblock %}
+    {% block body %}{% endblock %}
+    <footer {% block footerposition %}{% endblock %}>
+        <p>&copy; 2022 the uplifting scroller project. all rights reserved.</p>
+    </footer>
+</body>
+</html>

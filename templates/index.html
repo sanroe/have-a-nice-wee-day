@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}the uplifting scroller project{% endblock %}
+
+{% block overflow %}class="hide-overflow"{% endblock %}
+
+{% block body %}
+    <main>
+        <h2 id="make-text">make</h2>
+        <h2 id="someone-text">someone's</h2>
+        <h2 id="day-text">day...</h2>
+        <h2 id="let-go-arrow"><a href="/create">&rarr;</a></h2>
+        <img id="hero-img" src="/static/img/hero-character-799px-1004px.png" alt="A cheerful, whimsical yellow character made up of little creatures with its illustrated eyes closed and mouth whistling" width="700"/>
+    </main>
+{% endblock %}
+
+{% block footerposition %}class="footer-fixed"{% endblock %}

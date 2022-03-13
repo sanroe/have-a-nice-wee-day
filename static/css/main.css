@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+
+body {
+    max-width: 1024px;
+    max-height: 100vh;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    background-color: #EDB9D080;
+    font-family: 'Epilogue', Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+}
+
+main {
+    padding-top: 2rem;
+}
+
+h1 {
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-style: italic;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.5s, font-weight 1s;
+    transition-timing-function: ease-in;
+}
+
+a:hover {
+    color: white;
+    font-weight: 500;
+}
+
+input {
+    font-family: inherit;
+}
+
+input[type=text] {
+    width: 70vw;
+    max-width: 700px;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    font-weight: 300;
+    font-size: 0.75em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.footer-fixed {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+}
+
+.hide-overflow {
+    overflow: hidden;
+}
+
+#hero-img {
+    height: 70vh;
+    width: auto;
+}
