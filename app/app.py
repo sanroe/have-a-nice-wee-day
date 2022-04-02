@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, send_file
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('app.config')
 
 scroller_dummy_data = {
     'sarah': {'to-recipient-name': 'sarah', 'scroller-style': 'spring', 'scroller-colour': 'pastel', 'default-message': True, 'line-1': 'spring peeks through the clouds', 'line-2': 'I am reminded of you', 'line-3': 'and smile. you\'re the sun', 'long-message': 'wishing you well from across the way. hope to see you soon!', 'from-sender-name': 'you know who'},
@@ -22,6 +22,3 @@ def view(slug):
         return render_template('view.html', scroller=scroller_dummy_data[slug])
     else:
         return 'Sorry, could not find that scroller.'
-
-if __name__ == '__main__':
-    app.run()
