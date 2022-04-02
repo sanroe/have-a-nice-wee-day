@@ -12,7 +12,7 @@ def view(slug):
     if slug in scroller_dummy_data:
         return render_template('scrollers/view.html', scroller=scroller_dummy_data[slug])
     else:
-        return 'Sorry, could not find that scroller.'
+        return render_template('scrollers/error.html')
 
 @blueprint.route('/create')
 def create():
