@@ -8,6 +8,7 @@ class Scroller(db.Model):
     customhaiku_id = db.Column(db.Integer, db.ForeignKey('customhaiku.id'))
     defaulthaiku_id = db.Column(db.Integer, db.ForeignKey('defaulthaiku.id'))
     longmessage_id = db.Column(db.Integer, db.ForeignKey('longmessage.id'))
+    mood_id = db.Column(db.Integer, db.ForeignKey('mood.id'))
 
 class Customhaiku(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,3 +29,8 @@ class Longmessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     msg = db.Column(db.String(65535))
     scroller = db.relationship('Scroller', backref='longmessage', uselist=False, lazy=True)
+
+class Mood(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    scrollers = db.relationship('Scroller', backref='mood', lazy=True)
