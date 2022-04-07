@@ -1,10 +1,16 @@
+from app.extensions.database import db
+from app.scrollers.models import Scroller
+
 def test_view_success(client):
-    # Page loads
-    response = client.get('/view/<slug>')
+    # Page loads if scroller exists
+    scroller = Scroller(slug='test_for_view')
+    db.session.add(scroller)
+    db.session.commit()
+    response = client.get('/view/test_for_view')
     assert response.status_code == 200
 
 def test_view_content(client):
-    # Returns scroller view content
+    # Returns scroller view content if exists
     response = client.get('/view/<slug>')
     if response == 200:
         assert b"<title>the uplifting scroller project &ndash; view</title>" in response.data
