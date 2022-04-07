@@ -22,3 +22,7 @@ def view(slug):
 @blueprint.route('/create')
 def create():
     return render_template('scrollers/create.html')
+
+@blueprint.route('/404')
+def error_404():
+    return render_template('404.html')

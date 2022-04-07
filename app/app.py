@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect
 from app.extensions.database import db, migrate
 from . import scrollers, basic_pages
 import logging
@@ -26,7 +26,7 @@ def register_blueprints(app: Flask):
 
 # Page not found
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return redirect('/404')
 
 # Logging
 
