@@ -11,7 +11,13 @@ blueprint = Blueprint('scrollers', __name__)
 @blueprint.route('/view/<slug>')
 def view(slug):
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
-    return render_template('scrollers/view.html', scroller=scroller)
+    if scroller.customhaiku_id == None:
+        haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+    else:
+        haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+    mood = Mood.query.filter_by(id=scroller.mood_id).first()
+    return render_template('scrollers/view.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood)
 
 @blueprint.route('/create')
 def create():
