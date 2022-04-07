@@ -6,7 +6,8 @@ def test_view_success(client):
 def test_view_content(client):
     # Returns scroller view content
     response = client.get('/view/<slug>')
-    assert b"<title>the uplifting scroller project &ndash; view</title>" in response.data
+    if response == 200:
+        assert b"<title>the uplifting scroller project &ndash; view</title>" in response.data
 
 def test_create_success(client):
     # Page loads
