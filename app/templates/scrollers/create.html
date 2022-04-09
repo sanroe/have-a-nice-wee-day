@@ -37,7 +37,7 @@
                 <input type="text" id="line-three" name="line-three" placeholder="(5 syllables for a haiku)" /><br /><br />
             </div>
             <div class="center">
-                <label for="long-message">anything else you'd like to say?</label><br />
+                <label for="long-message">anything else you'd like to say? (optional)</label><br />
                 <input type="text" id="long-message" name="long-message" /><br /><br />
             </div>
             <div class="center">
@@ -46,5 +46,10 @@
             </div>
             <input type="submit" value="let's make some magic" />
         </form>
+
+        {% if error %}
+            <p style='color: tomato;'>{{ error }}</p>
+        {% endif %}
+
     </main>
 {% endblock %}

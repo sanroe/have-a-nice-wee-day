@@ -22,6 +22,23 @@ def get_create():
 
 @blueprint.post('/create')
 def post_create():    
+    # Validate required fields
+    if not all ([
+        request.form.get('to-recipient-name'),
+        request.form.get('mood'),
+        request.form.get('default-message'),
+        request.form.get('from-sender-name')
+    ]):
+        return render_template('scrollers/create.html', error='Please fill in all required fields!')
+    
+    if request.form.get('default-message') == 'False':
+        if not all ([
+            request.form.get('line-one'),
+            request.form.get('line-two'),
+            request.form.get('line-three')
+        ]):
+            return render_template('scrollers/create.html', error='Please complete your haiku!')
+
     # Create a unique slug
     slug_prefix = request.form.get('to-recipient-name')
     slug_prefix_clean = slug_prefix.replace(" ", "-")
