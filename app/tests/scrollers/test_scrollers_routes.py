@@ -15,15 +15,26 @@ def test_view_content(client):
     if response == 200:
         assert b"<title>the uplifting scroller project &ndash; view</title>" in response.data
 
-def test_create_success(client):
+def test_get_create_success(client):
     # Page loads
     response = client.get('/create')
     assert response.status_code == 200
 
-def test_create_content(client):
+def test_get_create_content(client):
     # Returns create content
     response = client.get('/create')
     assert 'whose day are we making?' in response.get_data(as_text=True)
+
+def test_post_create_scroller(client):
+    # Creates a scroller record
+    response = client.post('/create', data={
+        'to-recipient-name': 'diana',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'
+    })
+    assert Scroller.query.first() is not None
 
 def test_404_redirect(client):
     # Nonexistent page redirects
