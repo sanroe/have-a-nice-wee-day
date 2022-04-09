@@ -23,12 +23,12 @@
             <div>
                 <p>the message</p>
                 <p>pick one of ours or make your own?</p>
-                <input type="radio" id="pick-ours" name="default-message" value="True" />
+                <input type="radio" id="pick-ours" name="default-message" value="True" onclick="hideCustomhaikuForm();" />
                 <label for="pick-ours">let's see what you've got. surprise me!</label><br />
-                <input type="radio" id="make-your-own" name="default-message" value="False" />
+                <input type="radio" id="make-your-own" name="default-message" value="False" onclick="showCustomhaikuForm();"/>
                 <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label><br /><br />         
             </div>
-            <div class="center">
+            <div class="center" id="for-custom-haiku">
                 <label for="line-one">your first line</label><br />
                 <input type="text" id="line-one" name="line-one" placeholder="(5 syllables for a haiku)" /><br />
                 <label for="line-two">your second line</label><br />
@@ -46,6 +46,16 @@
             </div>
             <input type="submit" value="let's make some magic" />
         </form>
+
+        <script>
+            function showCustomhaikuForm() {
+                document.getElementById("for-custom-haiku").style.display = "block";
+            }
+
+            function hideCustomhaikuForm() {
+                document.getElementById("for-custom-haiku").style.display = "none";
+            }
+        </script>
 
         {% if error %}
             <p style='color: tomato;'>{{ error }}</p>

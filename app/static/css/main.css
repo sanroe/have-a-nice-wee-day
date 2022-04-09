@@ -89,3 +89,8 @@ footer {
     height: 70vh;
     width: auto;
 }
+
+#for-custom-haiku {
+    display: none;
+    text-align: center;
+}
