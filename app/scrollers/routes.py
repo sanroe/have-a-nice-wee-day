@@ -14,9 +14,13 @@ def view(slug):
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
     return render_template('scrollers/view.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood)
 
-@blueprint.route('/create')
-def create():
+@blueprint.get('/create')
+def get_create():
     return render_template('scrollers/create.html')
+
+@blueprint.post('/create')
+def post_create():
+    return 'it was posted'
 
 @blueprint.route('/404')
 def error_404():

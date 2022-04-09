@@ -8,16 +8,16 @@
 
 {% block body %}
     <main>
-        <form id="create-new">
+        <form method="POST" id="create-new">
             <div class="center">
                 <label for="to-recipient-name">whose day are we making?</label><br />
                 <input type="text" id="to-recipient-name" name="to-recipient-name" placeholder="a special someone" autofocus /><br>
             </div>
             <div>
                 <p>what mood are we feeling?</p>
-                <input type="radio" id="spring" name="scroller-style" value="spring" />
+                <input type="radio" id="spring" name="mood" value="spring" />
                 <label for="spring">spring has sprung &ndash; warm and light</label><br />
-                <input type="radio" id="autumn" name="scroller-style" value="autumn" />
+                <input type="radio" id="autumn" name="mood" value="autumn" />
                 <label for="autumn">seasons change &ndash; autumnal and beige</label><br />
             </div>
             <div>
