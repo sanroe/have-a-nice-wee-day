@@ -22,60 +22,65 @@ def get_create():
 
 @blueprint.post('/create')
 def post_create():    
-    # Validate required fields
-    if not all ([
-        request.form.get('to-recipient-name'),
-        request.form.get('mood'),
-        request.form.get('default-message'),
-        request.form.get('from-sender-name')
-    ]):
-        return render_template('scrollers/create.html', error='Please fill in all required fields!')
-    
-    if request.form.get('default-message') == 'False':
+    try:
+        # Validate required fields
         if not all ([
-            request.form.get('line-one'),
-            request.form.get('line-two'),
-            request.form.get('line-three')
+            request.form.get('to-recipient-name'),
+            request.form.get('mood'),
+            request.form.get('default-message'),
+            request.form.get('from-sender-name')
         ]):
-            return render_template('scrollers/create.html', error='Please complete your haiku!')
+            raise Exception('Please fill in all required fields!')
+        
+        if request.form.get('default-message') == 'False':
+            if not all ([
+                request.form.get('line-one'),
+                request.form.get('line-two'),
+                request.form.get('line-three')
+            ]):
+                raise Exception('Please complete your haiku!')
 
-    # Create a unique slug
-    slug_prefix = request.form.get('to-recipient-name')
-    slug_prefix_clean = slug_prefix.replace(" ", "-")
-    slug_suffix = ''.join(secrets.choice(string.ascii_uppercase + string.ascii_lowercase) for i in range(20))
-    slug = slug_prefix_clean + '-' + slug_suffix
-    
-    # Create a new scroller
-    scroller = Scroller(
-        slug=slug,
-        to_recipient_name=request.form.get('to-recipient-name'),
-        from_sender_name=request.form.get('from-sender-name'),
-        mood_id=request.form.get('mood')
-    )
-    scroller.save()
-
-    # Either create custom haiku entry or update scroller with default
-    if request.form.get('default-message') == "False":
-        customhaiku = Customhaiku(
-            line_one=request.form.get('line-one'),
-            line_two=request.form.get('line-two'),
-            line_three=request.form.get('line-three')
+        # Create a unique slug
+        slug_prefix = request.form.get('to-recipient-name')
+        slug_prefix_clean = slug_prefix.replace(" ", "-")
+        slug_suffix = ''.join(secrets.choice(string.ascii_uppercase + string.ascii_lowercase) for i in range(20))
+        slug = slug_prefix_clean + '-' + slug_suffix
+        
+        # Create a new scroller
+        scroller = Scroller(
+            slug=slug,
+            to_recipient_name=request.form.get('to-recipient-name'),
+            from_sender_name=request.form.get('from-sender-name'),
+            mood_id=request.form.get('mood')
         )
-        customhaiku.save()
-        scroller.customhaiku_id = customhaiku.id
-        scroller.save()
-    elif request.form.get('default-message') == "True":
-        scroller.defaulthaiku_id = request.form.get('mood')
         scroller.save()
 
-    longmessage = Longmessage(
-        msg=request.form.get('long-message')
-        )
-    longmessage.save()
-    scroller.longmessage_id = longmessage.id
-    scroller.save()
+        # Either create custom haiku entry or update scroller with default
+        if request.form.get('default-message') == "False":
+            customhaiku = Customhaiku(
+                line_one=request.form.get('line-one'),
+                line_two=request.form.get('line-two'),
+                line_three=request.form.get('line-three')
+            )
+            customhaiku.save()
+            scroller.customhaiku_id = customhaiku.id
+            scroller.save()
+        elif request.form.get('default-message') == "True":
+            scroller.defaulthaiku_id = request.form.get('mood')
+            scroller.save()
 
-    return 'it was posted'
+        longmessage = Longmessage(
+            msg=request.form.get('long-message')
+            )
+        longmessage.save()
+        scroller.longmessage_id = longmessage.id
+        scroller.save()
+
+        return 'it was posted'
+    except Exception as error_message:
+        error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
+        
+        return render_template('scrollers/create.html', error=error)
 
 @blueprint.route('/404')
 def error_404():
