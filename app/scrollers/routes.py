@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, current_app
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
 import secrets
 import string
@@ -80,6 +80,8 @@ def post_create():
     except Exception as error_message:
         error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
         
+        current_app.logger.info(f'Error creating a scroller: {error}')
+
         return render_template('scrollers/create.html', error=error)
 
 @blueprint.route('/404')
