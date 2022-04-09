@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
 
 blueprint = Blueprint('scrollers', __name__)
@@ -20,6 +20,10 @@ def get_create():
 
 @blueprint.post('/create')
 def post_create():
+    # Create a scroller
+    scroller = Scroller()
+    scroller.save()
+
     return 'it was posted'
 
 @blueprint.route('/404')
