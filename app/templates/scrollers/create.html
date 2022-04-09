@@ -11,23 +11,17 @@
         <form id="create-new">
             <div class="center">
                 <label for="to-recipient-name">whose day are we making?</label><br />
-                <input type="text" id="to-recipient-name" name="to-recipient-name" autofocus /><br>
+                <input type="text" id="to-recipient-name" name="to-recipient-name" placeholder="a special someone" autofocus /><br>
             </div>
             <div>
-                <p>what style are we feeling?</p>
+                <p>what mood are we feeling?</p>
                 <input type="radio" id="spring" name="scroller-style" value="spring" />
-                <label for="spring">spring has sprung</label><br />
+                <label for="spring">spring has sprung &ndash; warm and light</label><br />
                 <input type="radio" id="autumn" name="scroller-style" value="autumn" />
-                <label for="autumn">seasons change</label><br />
+                <label for="autumn">seasons change &ndash; autumnal and beige</label><br />
             </div>
             <div>
-                <p>and colours?</p>
-                <input type="radio" id="bright" name="scroller-colour" value="bright" />
-                <label for="spring">bright and light</label><br />
-                <input type="radio" id="pastel" name="scroller-colour" value="pastel" />
-                <label for="autumn">pastel delight</label><br />
-            </div>
-            <div>
+                <p>the message</p>
                 <p>pick one of ours or make your own?</p>
                 <input type="radio" id="pick-ours" name="default-message" value=True />
                 <label for="pick-ours">let's see what you've got. surprise me!</label><br />
@@ -35,12 +29,12 @@
                 <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label><br /><br />         
             </div>
             <div class="center">
-                <label for="line-1">your first line</label><br />
-                <input type="text" id="line-1" placeholder="(5 syllables for a haiku)" /><br />
-                <label for="line-1">your second line</label><br />
-                <input type="text" id="line-2" placeholder="(7 syllables for a haiku)" /><br />
-                <label for="line-1">your third line</label><br />
-                <input type="text" id="line-3" placeholder="(5 syllables for a haiku)" /><br /><br />
+                <label for="line-one">your first line</label><br />
+                <input type="text" id="line-one" placeholder="(5 syllables for a haiku)" /><br />
+                <label for="line-two">your second line</label><br />
+                <input type="text" id="line-two" placeholder="(7 syllables for a haiku)" /><br />
+                <label for="line-three">your third line</label><br />
+                <input type="text" id="line-three" placeholder="(5 syllables for a haiku)" /><br /><br />
             </div>
             <div class="center">
                 <label for="long-message">anything else you'd like to say?</label><br />
@@ -48,7 +42,7 @@
             </div>
             <div class="center">
                 <label for="from-sender-name">and last but not least, who shall we say it's from?</label><br />
-                <input type="text" id="from-sender-name" name="from-sender-name" /><br /><br />         
+                <input type="text" id="from-sender-name" name="from-sender-name" placeholder="add some kisses if you want to" /><br /><br />         
             </div>
             <input type="submit" value="let's make some magic" />
         </form>
