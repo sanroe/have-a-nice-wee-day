@@ -94,3 +94,8 @@ footer {
     display: none;
     text-align: center;
 }
+
+textarea {
+    resize: none;
+    font-family: inherit;
+}
