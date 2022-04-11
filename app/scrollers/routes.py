@@ -12,9 +12,13 @@ def view(slug):
         haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
     else:
         haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+    line_one = haiku.line_one.split()
+    line_two = haiku.line_two.split()
+    line_three = haiku.line_three.split()
     msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+    msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
-    return render_template('scrollers/view.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood)
+    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood)
 
 @blueprint.get('/create')
 def get_create():
