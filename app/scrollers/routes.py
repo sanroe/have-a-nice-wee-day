@@ -80,7 +80,7 @@ def post_create():
         scroller.longmessage_id = longmessage.id
         scroller.save()
 
-        return 'it was posted'
+        return render_template('scrollers/success.html', slug=slug)
     except Exception as error_message:
         error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
         

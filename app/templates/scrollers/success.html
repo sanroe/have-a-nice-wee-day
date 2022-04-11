@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}the uplifting scroller project &ndash; create{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>success!</h1>
+        <p>view your scroller</p>
+        <p><a href="/view/{{ slug }}">VIEW</a></p>
+        <p>go ahead and share</p>
+        <p id="scroller-link">http://127.0.0.1:5000/view/{{ slug }}</p>
+        <button onclick="copyLink()">copy link</button>
+    
+    <script>
+        function copyLink() {
+            var copyText = document.getElementById("scroller-link");
+
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+
+            navigator.clipboard.writeText(copyText.value);
+
+            alert("Scroller link copied!")
+        }
+    </script>
+    
+    </main>
+
+{% endblock %}
