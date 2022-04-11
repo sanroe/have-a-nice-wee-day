@@ -12,7 +12,7 @@
         <p>view your scroller</p>
         <p><a href="/view/{{ slug }}">VIEW</a></p>
         <p>go ahead and share</p>
-        <p id="scroller-link">http://127.0.0.1:5000/view/{{ slug }}</p>
+        <input type="text" id="scroller-link"  value="http://127.0.0.1:5000/view/{{ slug }}" readonly />
         <button onclick="copyLink()">copy link</button>
     
     <script>
@@ -24,7 +24,7 @@
 
             navigator.clipboard.writeText(copyText.value);
 
-            alert("Scroller link copied!")
+            alert("Scroller link copied: ");
         }
     </script>
     
