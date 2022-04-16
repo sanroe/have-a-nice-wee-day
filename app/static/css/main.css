@@ -101,6 +101,7 @@ textarea {
 }
 
 #lets-go {
+    margin-left: 3rem;
     height: 2rem;
     background-image: url('../img/hand-arrow.svg');
     background-repeat: no-repeat;
@@ -123,4 +124,12 @@ textarea {
 .landing {
     margin-left: 30%;
     margin-top: 10%;
+}
+
+#someone-text {
+    margin-left: 1rem;
+}
+
+#day-text {
+    margin-left: 2rem;
 }
