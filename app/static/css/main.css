@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
 
 body {
-    max-width: 1024px;
+    max-width: 1920px;
     max-height: 100vh;
     margin: 0 auto;
     padding: 0 20px;
@@ -118,4 +118,9 @@ textarea {
     background-repeat: no-repeat;
     height: 70vh;
     background-position: 20% 20vh;
+}
+
+.landing {
+    margin-left: 30%;
+    margin-top: 10%;
 }
