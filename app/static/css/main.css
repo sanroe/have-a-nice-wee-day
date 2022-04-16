@@ -163,3 +163,30 @@ textarea {
 .create div {
     margin-top: 1rem;
 }
+
+.success {
+    text-align: center;
+}
+
+.success svg {
+    height: 2rem;
+}
+
+.success svg:hover {
+    fill: white;
+}
+
+.success button {
+    background-color: pink;
+    font-family: inherit;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.success button:hover {
+    background-color: darkmagenta;
+}
