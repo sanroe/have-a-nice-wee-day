@@ -99,3 +99,16 @@ textarea {
     resize: none;
     font-family: inherit;
 }
+
+#lets-go {
+    height: 2rem;
+    background-image: url('../img/hand-arrow.svg');
+    background-repeat: no-repeat;
+    transition: background-image 100ms ease-in-out;
+}
+
+#lets-go:hover {
+    height: 2.72rem;
+    background-image: url('../img/hand-arrow-bird.svg');
+    background-repeat: no-repeat;
+}
