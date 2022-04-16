@@ -34,7 +34,7 @@ def post_create():
             request.form.get('default-message'),
             request.form.get('from-sender-name')
         ]):
-            raise Exception('Please fill in all required fields!')
+            raise Exception('please fill in all required fields!')
         
         if request.form.get('default-message') == 'False':
             if not all ([
@@ -42,7 +42,7 @@ def post_create():
                 request.form.get('line-two'),
                 request.form.get('line-three')
             ]):
-                raise Exception('Please complete your haiku!')
+                raise Exception('please complete your haiku!')
 
         # Create a unique slug
         slug_prefix = request.form.get('to-recipient-name')

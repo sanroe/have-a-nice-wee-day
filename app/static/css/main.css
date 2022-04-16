@@ -49,8 +49,8 @@ input {
 }
 
 input[type=text] {
-    width: 70vw;
-    max-width: 700px;
+    width: 90vw;
+    max-width: 450px;
     padding: 0.5rem 1rem;
     margin: 0.2rem;
     box-sizing: border-box;
@@ -132,4 +132,34 @@ textarea {
 
 #day-text {
     margin-left: 2rem;
+}
+
+.create input[type=submit] {
+    background-color: pink;
+    font-family: inherit;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    transition: all 200ms ease-in;
+}
+
+.create input[type=submit]:hover {
+    background-color: darkmagenta;
+}
+
+.error {
+    padding-top: 1rem;
+    color: tomato;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.create div {
+    margin-top: 1rem;
 }
