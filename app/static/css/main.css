@@ -112,3 +112,10 @@ textarea {
     background-image: url('../img/hand-arrow-bird.svg');
     background-repeat: no-repeat;
 }
+
+.homepage {
+    background-image: url('../img/char-1.svg');
+    background-repeat: no-repeat;
+    height: 70vh;
+    background-position: 20% 20vh;
+}
