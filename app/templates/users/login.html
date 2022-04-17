@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="login">
-        <h2>login</h2>
+        <h2 class="text-center">login</h2>
 
         <form method="POST">
             <div>
@@ -23,5 +23,10 @@
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
+        
+        <div id="register-text">
+            <p>don't have an account?</p>
+            <p><a href="/register">register here</a> to save and edit your scrollers for easier access</p>
+        </div>
     </main>
 {% endblock %}

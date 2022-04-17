@@ -210,3 +210,8 @@ textarea {
     width: 90vw;
     max-width: 450px;
 }
+
+#register-text {
+    font-size: 0.9rem;
+    text-align: center;
+}
