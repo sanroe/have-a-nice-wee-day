@@ -1,6 +1,6 @@
 from flask import Flask, redirect
 from app.extensions.database import db, migrate
-from . import scrollers, basic_pages
+from . import scrollers, basic_pages, users
 import logging
 
 def create_app():
@@ -23,6 +23,7 @@ def register_extensions(app: Flask):
 def register_blueprints(app: Flask):
     app.register_blueprint(scrollers.routes.blueprint)
     app.register_blueprint(basic_pages.routes.blueprint)
+    app.register_blueprint(users.routes.blueprint)
 
 # Page not found
 def page_not_found(e):
