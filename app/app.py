@@ -1,5 +1,6 @@
 from flask import Flask, redirect
 from app.extensions.database import db, migrate
+from app.extensions.authentication import login_manager
 from . import scrollers, basic_pages, users
 import logging
 
@@ -18,6 +19,7 @@ def create_app():
 def register_extensions(app: Flask):
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
 
 # Blueprints
 def register_blueprints(app: Flask):

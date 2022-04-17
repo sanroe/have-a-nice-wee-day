@@ -7,3 +7,5 @@ SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
 FLASK_APP = environ.get('FLASK_APP')
 
 SCROLLERS_PER_PAGE = 5
+
+SECRET_KEY = environ.get('SECRET_KEY')
