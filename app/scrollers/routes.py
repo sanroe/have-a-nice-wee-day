@@ -47,9 +47,9 @@ def post_create():
         # Create a unique slug
         slug_prefix = request.form.get('to-recipient-name')
         slug_prefix_clean = slug_prefix.replace(" ", "-")
-        slug_suffix = ''.join(secrets.choice(string.ascii_uppercase + string.ascii_lowercase) for i in range(20))
+        slug_suffix = ''.join(secrets.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in range(20))
         slug = slug_prefix_clean + '-' + slug_suffix
-        
+
         # Create a new scroller
         scroller = Scroller(
             slug=slug,
