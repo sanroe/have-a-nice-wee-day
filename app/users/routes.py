@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
+from .models import User
 
 blueprint = Blueprint('users', __name__)
 
@@ -32,7 +33,19 @@ def get_login():
 
 @blueprint.post('/login')
 def post_login():
-    return 'User logged in'
+    try:
+        user = User.query.filter_by(email=request.form.get('email')).first()
+
+        if not user:
+            raise Exception('no user with that email address found.')
+        elif check_password_hash(request.form.get('password'), user.password):
+            raise Exception('the password is incorrect.')
+        
+        return redirect(url_for('scrollers.myscrollers'))
+    
+    except Exception as error_message:
+        error = error_message or 'an error occurred while logging in. please verify your email and password.'
+        return render_template('users/login.html', error=error)
 
 @blueprint.get('/logout')
 def logout():
