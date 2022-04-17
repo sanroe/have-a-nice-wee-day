@@ -24,5 +24,9 @@
 
             <input type="submit" value="create account" />
         </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
     </main>
 {% endblock %}
