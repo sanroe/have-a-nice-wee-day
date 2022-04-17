@@ -5,6 +5,7 @@ import string
 
 blueprint = Blueprint('scrollers', __name__)
 
+# Route for the sender to view and edit
 @blueprint.route('/view/<slug>')
 def view_edit(slug):
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
@@ -20,6 +21,7 @@ def view_edit(slug):
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
     return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood)
 
+# Route for the recipient to view only
 @blueprint.route('/<slug>')
 def view(slug):
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
