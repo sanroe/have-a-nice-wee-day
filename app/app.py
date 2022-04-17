@@ -12,6 +12,7 @@ def create_app():
     register_blueprints(app)
 
     app.register_error_handler(404, page_not_found)
+    app.register_error_handler(401, unauthorised_page)
 
     return app
 
@@ -30,6 +31,9 @@ def register_blueprints(app: Flask):
 # Page not found
 def page_not_found(e):
     return redirect('/404')
+
+def unauthorised_page(e):
+    return redirect('/unauthorised')
 
 # Logging
 

@@ -121,3 +121,7 @@ def myscrollers():
 @blueprint.route('/404')
 def error_404():
     return render_template('404.html')
+
+@blueprint.route('/unauthorised')
+def error_401():
+    return render_template('unauthorised.html')
