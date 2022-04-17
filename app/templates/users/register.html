@@ -9,17 +9,17 @@
         <form method="POST">
             <div>
                 <label for="email">email</label>
-                <input type="email" name="email" id="email" required autofocus />
+                <input type="email" name="email" id="email" required autofocus autocomplete="username" />
             </div>
 
             <div>
-                <label for="password">password</label>
-                <input type="password" name="password" id="password" required />
+                <label for="password">password (minimum 8 characters)</label>
+                <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" />
             </div>
 
             <div>
                 <label for="password_confirmation">password confirmation</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" required />
+                <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
             </div>
 
             <input type="submit" value="create account" />
