@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}have a nice wee day &ndash; scrollers{% endblock %}
+
+{% block body %}
+    <main class="scrollers-list">
+        <h2>your scrollers</h2>
+        <ul>
+            {% for scroller in my_scrollers_pagination.items %}
+                <li>
+                    <p>scroller for {{ scroller.to_recipient_name }}</p>
+                    <p><a href='/view/{{ scroller.slug }}'>view and edit</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <nav>
+            {% if my_scrollers_pagination.prev_num %}
+                <a href="/myscrollers?page={{ my_scrollers_pagination.prev_num }}">previous page</a>
+            {% else %}
+                <span hidden>previous page</span>
+            {% endif %}
+            
+            <span> — </span>
+
+            {% if my_scrollers_pagination.next_num %}
+                <a href="myscrollers?page={{my_scrollers_pagination.next_num }}">next page</a>
+            {% else %}
+                <span hidden>next page</span>
+            {% endif %}
+        </nav>
+    </main>
+{% endblock %}

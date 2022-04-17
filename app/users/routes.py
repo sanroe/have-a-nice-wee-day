@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 
 blueprint = Blueprint('users', __name__)
@@ -21,7 +21,7 @@ def post_register():
         )
         user.save()
 
-        return 'User created'
+        return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
         error = error_message or 'an error occurred while creating your account. please make sure to enter valid data.'
         return render_template('users/register.html', error=error)

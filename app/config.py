@@ -5,3 +5,5 @@ load_dotenv()
 
 SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
 FLASK_APP = environ.get('FLASK_APP')
+
+SCROLLERS_PER_PAGE = 5
