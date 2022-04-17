@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user
 from .models import User
 
 blueprint = Blueprint('users', __name__)
@@ -22,6 +23,7 @@ def post_register():
         )
         user.save()
 
+        login_user(user)
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
         error = error_message or 'an error occurred while creating your account. please make sure to enter valid data.'
@@ -41,6 +43,7 @@ def post_login():
         elif check_password_hash(request.form.get('password'), user.password):
             raise Exception('the password is incorrect.')
         
+        login_user(user)
         return redirect(url_for('scrollers.myscrollers'))
     
     except Exception as error_message:

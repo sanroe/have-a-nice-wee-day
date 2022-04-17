@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, current_app
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
+from flask_login import login_required
 import secrets
 import string
 
@@ -111,6 +112,7 @@ def post_create():
         return render_template('scrollers/create.html', error=error)
 
 @blueprint.route('/myscrollers')
+@login_required
 def myscrollers():
     page_number = request.args.get('page', 1, type=int)
     my_scrollers_pagination = Scroller.query.paginate(page_number, current_app.config['SCROLLERS_PER_PAGE'])
