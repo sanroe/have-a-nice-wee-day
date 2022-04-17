@@ -8,6 +8,11 @@ def get_register():
 
 @blueprint.post('/register')
 def post_register():
+    if request.form.get('password') != request.form.get('password_confirmation'):
+        return render_template('users/register.html', error='the password confirmation must match the password.')
+    elif User.query.filter_by(email=request.form.get('email')).first():
+        return render_template('users/register.html', error='the email address is already registered.')
+
     return 'User created'
 
 @blueprint.get('/login')
