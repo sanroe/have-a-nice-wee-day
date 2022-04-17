@@ -54,4 +54,4 @@ def post_login():
 def logout():
     logout_user()
 
-    return redirect(url_for('users.get_login'))
+    return redirect(url_for('basic_pages.index'))
