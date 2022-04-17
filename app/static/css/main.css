@@ -33,6 +33,15 @@ header {
     padding-right: 1rem;
 }
 
+.header-right {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.header-right h1 {
+    padding-left: 1rem;
+}
+
 h2 {
     font-size: 2rem;
 }
