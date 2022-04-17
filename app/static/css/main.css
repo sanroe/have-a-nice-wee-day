@@ -196,3 +196,8 @@ textarea {
 .success button:hover {
     background-color: darkmagenta;
 }
+
+.success input[type=text] {
+    width: 90vw;
+    max-width: 450px;
+}
