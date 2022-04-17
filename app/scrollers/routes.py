@@ -6,6 +6,21 @@ import string
 blueprint = Blueprint('scrollers', __name__)
 
 @blueprint.route('/view/<slug>')
+def view_edit(slug):
+    scroller = Scroller.query.filter_by(slug=slug).first_or_404()
+    if scroller.customhaiku_id == None:
+        haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+    else:
+        haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+    line_one = haiku.line_one.split()
+    line_two = haiku.line_two.split()
+    line_three = haiku.line_three.split()
+    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+    msg = msg.msg.splitlines(True)
+    mood = Mood.query.filter_by(id=scroller.mood_id).first()
+    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood)
+
+@blueprint.route('/<slug>')
 def view(slug):
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
     if scroller.customhaiku_id == None:
