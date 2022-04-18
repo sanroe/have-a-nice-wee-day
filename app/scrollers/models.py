@@ -9,6 +9,7 @@ class Scroller(db.Model, CRUDMixin):
     defaulthaiku_id = db.Column(db.Integer, db.ForeignKey('defaulthaiku.id'))
     longmessage_id = db.Column(db.Integer, db.ForeignKey('longmessage.id'))
     mood_id = db.Column(db.Integer, db.ForeignKey('mood.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Customhaiku(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True)
