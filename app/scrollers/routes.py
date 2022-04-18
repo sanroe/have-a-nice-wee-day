@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, current_app, redirect, url_for
+from flask import Blueprint, render_template, request, current_app, redirect, url_for, session
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
 from flask_login import login_required, current_user
 import secrets
@@ -124,7 +124,10 @@ def post_create():
             scroller.save()
             logged_in = True
 
-        return redirect(url_for('scrollers.success', slug=slug, logged_in=logged_in))
+        session['slug'] = slug
+        session['logged_in'] = logged_in
+
+        return redirect(url_for('scrollers.success'))
     except Exception as error_message:
         error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
         
@@ -134,8 +137,8 @@ def post_create():
 
 @blueprint.route('/success')
 def success():
-    slug = request.args.get('slug')
-    logged_in = request.args.get('logged_in')
+    slug = session['slug']
+    logged_in = session['logged_in']
     has_account = False
     return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=has_account)
     
