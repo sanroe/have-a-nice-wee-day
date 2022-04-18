@@ -135,14 +135,19 @@ def myscrollers():
 @login_required
 def delete_scroller(slug):
     scroller = Scroller.query.filter_by(slug=slug).first()
-    if scroller.customhaiku_id != None:
-        customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-        customhaiku.delete()
-    if scroller.longmessage_id != None:
-        longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-        longmessage.delete()
-    scroller.delete()
-    return redirect(url_for('scrollers.myscrollers'))
+    # Only delete scroller is logged in user matches otherwise throw unauthorised error
+    # Avoids eg, a different logged in user being able to delete scroller by editing known URL
+    if int(current_user.get_id()) == scroller.user_id:
+        if scroller.customhaiku_id != None:
+            customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            customhaiku.delete()
+        if scroller.longmessage_id != None:
+            longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            longmessage.delete()
+        scroller.delete()
+        return redirect(url_for('scrollers.myscrollers'))
+    else:
+        return render_template('unauthorised.html')
 
 @blueprint.get('/edit/<slug>')
 def get_edit_scroller(slug):
