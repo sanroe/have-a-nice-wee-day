@@ -20,7 +20,8 @@ def view_edit(slug):
     msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
     msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
-    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood)
+    edit_allowed = True
+    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
 
 # Route for the recipient to view only
 @blueprint.route('/<slug>')
@@ -36,7 +37,8 @@ def view(slug):
     msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
     msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
-    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood)
+    edit_allowed = False
+    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
 
 @blueprint.get('/create')
 def get_create():
