@@ -103,6 +103,12 @@ def post_create():
         scroller.longmessage_id = longmessage.id
         scroller.save()
 
+        # Save user if logged in
+        if current_user.is_authenticated:
+            user = int(current_user.get_id())
+            scroller.user_id = user
+            scroller.save()
+
         return render_template('scrollers/success.html', slug=slug)
     except Exception as error_message:
         error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
