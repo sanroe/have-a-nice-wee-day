@@ -8,22 +8,28 @@ blueprint = Blueprint('scrollers', __name__)
 
 # Route for the sender to view and edit
 @blueprint.route('/view/<slug>')
+@login_required
 def view_edit(slug):
+    # Only allow edit of scroller if logged in user matches otherwise throw unauthorised error
+    # Avoids eg, a different logged in user being able to edit scroller by adding '/view/ to known URL
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
-    if scroller.customhaiku_id == None:
-        haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+    if int(current_user.get_id()) == scroller.user_id:
+        if scroller.customhaiku_id == None:
+            haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+        else:
+            haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+        line_one = haiku.line_one.split()
+        line_two = haiku.line_two.split()
+        line_three = haiku.line_three.split()
+        msg = ''
+        if scroller.longmessage_id:
+            msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            msg = msg.msg.splitlines(True)
+        mood = Mood.query.filter_by(id=scroller.mood_id).first()
+        edit_allowed = True
+        return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
     else:
-        haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-    line_one = haiku.line_one.split()
-    line_two = haiku.line_two.split()
-    line_three = haiku.line_three.split()
-    msg = ''
-    if scroller.longmessage_id:
-        msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-        msg = msg.msg.splitlines(True)
-    mood = Mood.query.filter_by(id=scroller.mood_id).first()
-    edit_allowed = True
-    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
+        return render_template('unauthorised.html')
 
 # Route for the recipient to view only
 @blueprint.route('/<slug>')
