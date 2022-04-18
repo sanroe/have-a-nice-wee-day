@@ -30,29 +30,32 @@
         <input type="text" id="scroller-link"  value="http://127.0.0.1:5000/{{ slug }}" readonly />
         <button onclick="copyLink()">copy link</button>
     
-        <p>to save your scrollers in one place, and edit them, create an account</p>
-        <div class="success-register">
-            <form method="POST">
-                <div>
-                    <label for="email">email</label>
-                    <input type="email" name="email" id="email" required autocomplete="username" />
-                </div>
+        {% if not logged_in %}
+            <p>to save your scrollers in one place, and edit them, create an account</p>
+            <div class="success-register">
+                <form method="POST">
+                    <div>
+                        <label for="email">email</label>
+                        <input type="email" name="email" id="email" required autocomplete="username" />
+                    </div>
 
-                <div>
-                    <label for="password">password (minimum 8 characters)</label>
-                    <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" />
-                </div>
+                    <div>
+                        <label for="password">password (minimum 8 characters)</label>
+                        <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" />
+                    </div>
 
-                <div>
-                    <label for="password_confirmation">password confirmation</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
-                </div>
+                    <div>
+                        <label for="password_confirmation">password confirmation</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
+                    </div>
 
-                <input type="submit" value="create account" />
-            </form>
-        </div>
-        {% if error %}
-            <p class="error">{{ error }}</p>
+                    <input type="submit" value="create account" />
+                </form>
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
         {% endif %}
 
     <script>

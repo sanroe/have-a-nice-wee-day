@@ -134,11 +134,10 @@ def post_create():
 
 @blueprint.route('/success&<slug>&<logged_in>')
 def success(slug, logged_in):
-    if slug and logged_in:
-        print(logged_in)
-        return render_template('scrollers/success.html', slug=slug, logged_in=logged_in)
-    else:
-        return redirect(url_for('scrollers.error_404'))
+    if logged_in == 'True':
+        return render_template('scrollers/success.html', slug=slug, logged_in=True)
+    elif logged_in == 'False':
+        return render_template('scrollers/success.html', slug=slug, logged_in=False)
 
 @blueprint.route('/myscrollers')
 @login_required
