@@ -10,7 +10,7 @@ blueprint = Blueprint('scrollers', __name__)
 @blueprint.route('/view/<slug>')
 @login_required
 def view_edit(slug):
-    # Only allow edit of scroller if logged in user matches otherwise throw unauthorised error
+    # Only allow view to edit of scroller if logged in user matches otherwise throw unauthorised error
     # Avoids eg, a different logged in user being able to edit scroller by adding '/view/ to known URL
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
     if int(current_user.get_id()) == scroller.user_id:
@@ -156,17 +156,23 @@ def delete_scroller(slug):
         return render_template('unauthorised.html')
 
 @blueprint.get('/edit/<slug>')
+@login_required
 def get_edit_scroller(slug):
     scroller = Scroller.query.filter_by(slug=slug).first()
-    if scroller.customhaiku_id != None:
-        haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-        default_haiku = False
+    # Only allow view to edit of scroller if logged in user matches otherwise throw unauthorised error
+    # Avoids eg, a different logged in user being able to edit scroller by adding '/view/ to known URL
+    if int(current_user.get_id()) == scroller.user_id:
+        if scroller.customhaiku_id != None:
+            haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            default_haiku = False
+        else:
+            haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+            default_haiku = True
+        msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+        mood = Mood.query.filter_by(id=scroller.mood_id).first()
+        return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
     else:
-        haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
-        default_haiku = True
-    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-    mood = Mood.query.filter_by(id=scroller.mood_id).first()
-    return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
+        return render_template('unauthorised.html')
 
 @blueprint.post('/edit/<slug>')
 def post_edit_scroller(slug):    
