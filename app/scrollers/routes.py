@@ -138,6 +138,19 @@ def delete_scroller(slug):
     scroller.delete()
     return redirect(url_for('scrollers.myscrollers'))
 
+@blueprint.get('/edit/<slug>')
+def get_edit_scroller(slug):
+    scroller = Scroller.query.filter_by(slug=slug).first()
+    if scroller.customhaiku_id != None:
+        haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+        default_haiku = False
+    else:
+        haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+        default_haiku = True
+    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+    mood = Mood.query.filter_by(id=scroller.mood_id).first()
+    return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
+
 @blueprint.route('/404')
 def error_404():
     return render_template('404.html')
