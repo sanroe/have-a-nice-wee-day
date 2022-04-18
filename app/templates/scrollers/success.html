@@ -30,7 +30,7 @@
         <input type="text" id="scroller-link"  value="http://127.0.0.1:5000/{{ slug }}" readonly />
         <button onclick="copyLink()">copy link</button>
     
-        {% if not logged_in %}
+        {% if not logged_in and not has_account %}
             <p>to save your scrollers in one place, and edit them, create an account</p>
             <div class="success-register">
                 <form method="POST">
@@ -49,13 +49,34 @@
                         <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
                     </div>
 
-                    <input type="submit" value="create account" />
+                    <input type="submit" name="submit_button" value="create account" />
                 </form>
             </div>
-            {% if error %}
-                <p class="error">{{ error }}</p>
-            {% endif %}
+            <p>already have an account? <a href="/success&{{ slug }}&{{ logged_in }}&True">click here to log in</a></p>
+        
+        {% endif %}
 
+        {% if has_account %}
+            <h3 class="text-center">login</h3>
+            <div class="success-login">
+                <form method="POST">
+                    <div>
+                        <label for="email">email</label>
+                        <input type="email" name="email" id="email" required autocomplete="username" />
+                    </div>
+        
+                    <div>
+                        <label for="password">password</label>
+                        <input type="password" name="password" id="password" required minlength="8" maxlength="120" required autocomplete="current-password" />
+                    </div>
+        
+                    <input type="submit" name="submit_button" value="login" />
+                </form>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
         {% endif %}
 
     <script>

@@ -62,16 +62,15 @@ def logout():
 def post_success_register(slug, logged_in):
     try:
         if request.form.get('password') != request.form.get('password_confirmation'):
-            return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, error='the password confirmation must match the password.')
+            return render_template('scrollers/success.html', slug=slug, logged_in=False, error='the password confirmation must match the password.')
         elif User.query.filter_by(email=request.form.get('email')).first():
-            return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, error='the email address is already registered.')
+            return render_template('scrollers/success.html', slug=slug, logged_in=False, error='the email address is already registered.')
 
         user = User(
             email=request.form.get('email'),
             password=generate_password_hash(request.form.get('password'))
         )
         user.save()
-        
         login_user(user)
 
         scroller = Scroller.query.filter_by(slug=slug).first()
@@ -81,4 +80,26 @@ def post_success_register(slug, logged_in):
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
         error = error_message or 'an error occurred while creating your account. please make sure to enter valid data.'
-        return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, error=error)
+        return render_template('scrollers/success.html', slug=slug, logged_in=False, error=error)
+
+# Blueprint for user login on scroller creation
+@blueprint.post('/success&<slug>&<logged_in>&<has_account>')
+def post_success_login(slug, logged_in, has_account):
+    try:
+        user = User.query.filter_by(email=request.form.get('email')).first()
+
+        if not user:
+            raise Exception('no user with that email address found.')
+        elif check_password_hash(request.form.get('password'), user.password):
+            raise Exception('the password is incorrect.')
+
+        login_user(user)
+
+        scroller = Scroller.query.filter_by(slug=slug).first()
+        scroller.user_id = user.id
+        scroller.save()
+
+        return redirect(url_for('scrollers.myscrollers'))
+    except Exception as error_message:
+        error = error_message or 'an error occurred while trying to log you in. please make sure to enter valid data.'
+        return render_template('scrollers/success.html', slug=slug, logged_in=False, has_account=True, error=error)
