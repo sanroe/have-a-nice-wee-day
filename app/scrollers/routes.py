@@ -116,7 +116,7 @@ def post_create():
         scroller.save()
 
         logged_in = False
-        
+
         # Save user if logged in
         if current_user.is_authenticated:
             user = int(current_user.get_id())
@@ -124,13 +124,21 @@ def post_create():
             scroller.save()
             logged_in = True
 
-        return render_template('scrollers/success.html', slug=slug, logged_in=logged_in)
+        return redirect(url_for('scrollers.success', slug=slug, logged_in=logged_in))
     except Exception as error_message:
         error = error_message or 'An error occurred while trying to create your scroller. Please try again.'
         
         current_app.logger.info(f'Error creating a scroller: {error}')
 
         return render_template('scrollers/create.html', error=error)
+
+@blueprint.route('/success&<slug>&<logged_in>')
+def success(slug, logged_in):
+    if slug and logged_in:
+        print(logged_in)
+        return render_template('scrollers/success.html', slug=slug, logged_in=logged_in)
+    else:
+        return redirect(url_for('scrollers.error_404'))
 
 @blueprint.route('/myscrollers')
 @login_required

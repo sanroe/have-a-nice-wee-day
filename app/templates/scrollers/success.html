@@ -30,7 +30,6 @@
         <input type="text" id="scroller-link"  value="http://127.0.0.1:5000/{{ slug }}" readonly />
         <button onclick="copyLink()">copy link</button>
     
-        {% if not logged_in %}
         <p>to save and edit your scroller, create an account</p>
         <div class="success-register">
             <form method="POST">
@@ -54,8 +53,6 @@
         </div>
         {% if error %}
             <p class="error">{{ error }}</p>
-        {% endif %}
-
         {% endif %}
 
     <script>
