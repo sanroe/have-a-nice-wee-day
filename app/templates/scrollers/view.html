@@ -285,11 +285,13 @@
                 </svg>
             </div>
         </div>
+        {% if msg %}
         <div id="longer-message">
             {% for each in msg %}
                 <p>{{ each }}</p>
             {% endfor %}
         </div>
+        {% endif %}
         <h3 id="from-text">{{ scroller.from_sender_name }}</h3>
     </section>
 </main>

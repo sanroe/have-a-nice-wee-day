@@ -17,8 +17,10 @@ def view_edit(slug):
     line_one = haiku.line_one.split()
     line_two = haiku.line_two.split()
     line_three = haiku.line_three.split()
-    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-    msg = msg.msg.splitlines(True)
+    msg = ''
+    if scroller.longmessage_id:
+        msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+        msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
     edit_allowed = True
     return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
@@ -34,8 +36,10 @@ def view(slug):
     line_one = haiku.line_one.split()
     line_two = haiku.line_two.split()
     line_three = haiku.line_three.split()
-    msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-    msg = msg.msg.splitlines(True)
+    msg = ''
+    if scroller.longmessage_id:
+        msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+        msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
     edit_allowed = False
     return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
@@ -152,6 +156,89 @@ def get_edit_scroller(slug):
     msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
     return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
+
+@blueprint.post('/edit/<slug>')
+def post_edit_scroller(slug):    
+    try:
+        # Validate required fields
+        if not all ([
+            request.form.get('to-recipient-name'),
+            request.form.get('mood'),
+            request.form.get('default-message'),
+            request.form.get('from-sender-name')
+        ]):
+            raise Exception('please fill in all required fields!')
+        
+        if request.form.get('default-message') == 'False':
+            if not all ([
+                request.form.get('line-one'),
+                request.form.get('line-two'),
+                request.form.get('line-three')
+            ]):
+                raise Exception('please complete your haiku!')
+
+        # Clean to and from names to lowercase
+        to_name = request.form.get('to-recipient-name')
+        from_name = request.form.get('from-sender-name')
+        to_name_lower = to_name.lower()
+        from_name_lower = from_name.lower()
+
+        # Grab scroller record and update
+        scroller = Scroller.query.filter_by(slug=slug).first()
+        scroller.to_recipient_name = to_name_lower
+        scroller.from_sender_name = from_name_lower
+        scroller.mood_id = request.form.get('mood')
+        scroller.save()
+
+        # Either update custom haiku entry (if exists or save new) or update scroller as default (deleting previous custom haiku entry)
+        if request.form.get('default-message') == "False" and scroller.customhaiku_id:
+            customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            customhaiku.line_one = request.form.get('line-one')
+            customhaiku.line_two = request.form.get('line-two')
+            customhaiku.line_three = request.form.get('line-three')
+            customhaiku.save()
+        elif request.form.get('default-message') == "False" and not scroller.customhaiku_id:
+            customhaiku = Customhaiku(
+                line_one=request.form.get('line-one'),
+                line_two=request.form.get('line-two'),
+                line_three=request.form.get('line-three')
+            )
+            customhaiku.save()
+            scroller.customhaiku_id = customhaiku.id
+            scroller.save()
+        elif request.form.get('default-message') == "True" and scroller.customhaiku_id:
+            customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            customhaiku.delete()
+            scroller.customhaiku_id = None
+            scroller.defaulthaiku_id = request.form.get('mood')
+            scroller.save()
+
+        # Update existing long message or save new if not exists
+        if scroller.longmessage_id and request.form.get('long-message'):
+            longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            longmessage.msg = request.form.get('long-message')
+            longmessage.save()
+        elif scroller.longmessage_id and not request.form.get('long-message'):
+            longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            longmessage.delete()
+            scroller.longmessage_id = None
+            scroller.save()
+        elif not scroller.longmessage_id:
+            longmessage = Longmessage(
+                msg=request.form.get('long-message')
+                )
+            print(longmessage)
+            longmessage.save()
+            scroller.longmessage_id = longmessage.id
+            scroller.save()
+
+        return render_template('scrollers/success.html', slug=slug)
+    except Exception as error_message:
+        error = error_message or 'an error occurred while trying to update your scroller. maybe start afresh.'
+        
+        current_app.logger.info(f'error updating a scroller: {error}')
+
+        return render_template('scrollers/create.html', error=error)
 
 @blueprint.route('/404')
 def error_404():
