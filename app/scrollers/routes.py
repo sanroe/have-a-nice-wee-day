@@ -132,13 +132,13 @@ def post_create():
 
         return render_template('scrollers/create.html', error=error)
 
-@blueprint.route('/success&<slug>&<logged_in>')
-def success(slug, logged_in):
-    if logged_in == 'True':
-        return render_template('scrollers/success.html', slug=slug, logged_in=True)
-    elif logged_in == 'False':
-        return render_template('scrollers/success.html', slug=slug, logged_in=False, has_account=False)
-
+@blueprint.route('/success')
+def success():
+    slug = request.args.get('slug')
+    logged_in = request.args.get('logged_in')
+    has_account = False
+    return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=has_account)
+    
 # Route save scroller and log in if already have an account but not logged in
 @blueprint.route('/success&<slug>&<logged_in>&<has_account>')
 def success_not_logged_in_with_account(slug, logged_in, has_account):
