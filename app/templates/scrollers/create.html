@@ -39,6 +39,7 @@
             <div class="center">
                 <label for="long-message">anything else you'd like to say? (optional)</label><br />
                 <textarea id="long-message" name="long-message" rows="4" cols="60" maxlength="1000" ></textarea><br />
+                <div id="long-message-count"></div>
             </div>
             <div class="center">
                 <label for="from-sender-name">and last but not least, who shall we say it's from?</label><br />
@@ -55,6 +56,12 @@
             function hideCustomhaikuForm() {
                 document.getElementById("for-custom-haiku").style.display = "none";
             }
+
+            const textarea = document.querySelector('textarea')
+            const count = document.getElementById('long-message-count')
+            textarea.onkeyup = (e) => {
+                count.innerHTML = (1000 - e.target.value.length) + "/1000 characters";
+            };
         </script>
 
         {% if error %}

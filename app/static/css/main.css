@@ -228,3 +228,11 @@ textarea {
 .edit-header h3 {
     text-align: right;
 }
+
+#long-message-count {
+    color: gray;
+    margin-top: -1rem;
+    font-size: 0.7rem;
+    width: 100%;
+    text-align: right;
+}
