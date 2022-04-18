@@ -186,6 +186,7 @@ def get_edit_scroller(slug):
         return render_template('unauthorised.html')
 
 @blueprint.post('/edit/<slug>')
+@login_required
 def post_edit_scroller(slug):    
     try:
         # Validate required fields
@@ -260,7 +261,9 @@ def post_edit_scroller(slug):
             scroller.longmessage_id = longmessage.id
             scroller.save()
 
-        return render_template('scrollers/success.html', slug=slug)
+        logged_in = True
+
+        return redirect(url_for('scrollers.success', slug=slug, logged_in=logged_in))
     except Exception as error_message:
         error = error_message or 'an error occurred while trying to update your scroller. maybe start afresh.'
         
