@@ -9,7 +9,7 @@
             {% for scroller in my_scrollers_pagination.items %}
                 <li>
                     <p>scroller for {{ scroller.to_recipient_name }}</p>
-                    <p><a href='/view/{{ scroller.slug }}'>view and edit</a></p>
+                    <p><a href='/view/{{ scroller.slug }}'>view and edit</a> – <a href="/delete/{{ scroller.slug }}">delete</a></p>
                 </li>
             {% endfor %}
         </ul>

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, current_app
+from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
 from flask_login import login_required, current_user
 import secrets
@@ -118,6 +118,19 @@ def myscrollers():
     user = int(current_user.get_id())
     my_scrollers_pagination = Scroller.query.filter_by(user_id=user).paginate(page_number, current_app.config['SCROLLERS_PER_PAGE'])
     return render_template('scrollers/index.html', my_scrollers_pagination=my_scrollers_pagination)
+
+@blueprint.route('/delete/<slug>')
+@login_required
+def delete_scroller(slug):
+    scroller = Scroller.query.filter_by(slug=slug).first()
+    if scroller.customhaiku_id != None:
+        customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+        customhaiku.delete()
+    if scroller.longmessage_id != None:
+        longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+        longmessage.delete()
+    scroller.delete()
+    return redirect(url_for('scrollers.myscrollers'))
 
 @blueprint.route('/404')
 def error_404():
