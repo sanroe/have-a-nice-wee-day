@@ -236,3 +236,7 @@ textarea {
     width: 100%;
     text-align: right;
 }
+
+footer span {
+    padding-left: 1rem;
+}
