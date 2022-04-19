@@ -28,7 +28,7 @@ class Defaulthaiku(db.Model, CRUDMixin):
 
 class Longmessage(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True)
-    msg = db.Column(db.String(65535))
+    msg = db.Column(db.String(1000))
     scroller = db.relationship('Scroller', backref='longmessage', uselist=False, lazy=True)
 
 class Mood(db.Model, CRUDMixin):
