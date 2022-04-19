@@ -139,14 +139,16 @@ def post_create():
 def success():
     slug = session['slug']
     logged_in = session['logged_in']
-    return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=False)
+    site_url = request.url_root
+    return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=False, site_url=site_url)
     
 # Route save scroller and log in if already have an account but not logged in
 @blueprint.route('/success/login')
 def success_not_logged_in_with_account():
     slug = session['slug']
     logged_in = session['logged_in']
-    return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=True)
+    site_url = request.url_root
+    return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=True, site_url=site_url)
 
 @blueprint.route('/myscrollers')
 @login_required

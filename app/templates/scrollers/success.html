@@ -27,7 +27,7 @@
         <br />
         {% endif %}
         <p>or go ahead and share</p>
-        <input type="text" id="scroller-link"  value="http://127.0.0.1:5000/{{ slug }}" readonly />
+        <input type="text" id="scroller-link"  value="{{ site_url }}{{ slug }}" readonly />
         <button onclick="copyLink()">copy link</button>
     
         {% if not logged_in and not has_account %}
