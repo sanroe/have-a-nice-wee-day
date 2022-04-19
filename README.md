@@ -1,4 +1,4 @@
-# the uplifting scroller project
+# have a nice wee day
 
 a web application that allows users to generate a dynamic single-page 'uplifting' scroller to share with others.  
 
