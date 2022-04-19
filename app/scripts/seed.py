@@ -20,6 +20,7 @@ for each in mood_data:
     new_mood = Mood(name=each)
     db.session.add(new_mood)
 
+"""
 scroller_test_data = {
     'test-slug-sarah': { 'to_recipient_name': 'sarah', 'from_sender_name': ':)', 'defaulthaiku_id': '1', 'longmessage_id': '1', 'mood_id': '1'},
     'test-slug-laura': { 'to_recipient_name': 'laura', 'from_sender_name': ':)', 'defaulthaiku_id': '2', 'longmessage_id': '2', 'mood_id': '2'},
@@ -37,5 +38,6 @@ longmessage_data = {
 for key, value in longmessage_data.items():
     new_longmessage = Longmessage(msg=value['msg'])
     db.session.add(new_longmessage)
+"""
 
 db.session.commit()
