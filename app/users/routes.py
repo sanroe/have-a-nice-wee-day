@@ -25,6 +25,14 @@ def post_register():
         user.save()
 
         login_user(user)
+
+        # If user registers in through navbar during active scroller creation session, automatically save to account
+        if session['slug']:
+            slug = session['slug']
+            scroller = Scroller.query.filter_by(slug=slug).first()
+            scroller.user_id = user.id
+            scroller.save()
+
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
         error = error_message or 'an error occurred while creating your account. please make sure to enter valid data.'
@@ -45,6 +53,14 @@ def post_login():
             raise Exception('the password is incorrect.')
         
         login_user(user)
+
+        # If user logins in through navbar during active scroller creation session, automatically save to account
+        if session['slug']:
+            slug = session['slug']
+            scroller = Scroller.query.filter_by(slug=slug).first()
+            scroller.user_id = user.id
+            scroller.save()
+
         return redirect(url_for('scrollers.myscrollers'))
     
     except Exception as error_message:
