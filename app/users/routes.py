@@ -105,3 +105,8 @@ def post_success_login():
     except Exception as error_message:
         error = error_message or 'an error occurred while trying to log you in. please make sure to enter valid data.'
         return render_template('scrollers/success.html', slug=session['slug'], logged_in=session['logged_in'], has_account=True, error=error)
+
+# Blueprint for unauthorised actions, 401 error
+@blueprint.route('/unauthorised')
+def error_401():
+    return render_template('unauthorised.html')
