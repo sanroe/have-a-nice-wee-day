@@ -280,7 +280,3 @@ def post_edit_scroller(slug):
         current_app.logger.info(f'error updating a scroller: {error}')
 
         return render_template('scrollers/create.html', error=error)
-
-@blueprint.route('/404')
-def error_404():
-    return render_template('404.html')

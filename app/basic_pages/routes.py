@@ -13,3 +13,7 @@ def about():
 @blueprint.route('/legal')
 def legal():
     return render_template('basic_pages/legal.html')
+
+@blueprint.route('/404')
+def error_404():
+    return render_template('404.html')
