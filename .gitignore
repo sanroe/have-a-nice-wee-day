@@ -5,4 +5,4 @@ __pycache__/
 *.log
 database.db
 fonts/
-.dump
+*.dump
