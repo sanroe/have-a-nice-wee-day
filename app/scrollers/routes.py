@@ -8,27 +8,27 @@ blueprint = Blueprint('scrollers', __name__)
 
 # Route for the sender to view and edit
 @blueprint.route('/view/<slug>')
-@login_required
 def view_edit(slug):
-    # Only allow view to edit of scroller if logged in user matches otherwise throw unauthorised error
+    # Only allow view to edit of scroller if logged in user matches or if slug matches authored from session, otherwise throw unauthorised error
     # Avoids eg, a different logged in user being able to edit scroller by adding '/view/ to known URL
     scroller = Scroller.query.filter_by(slug=slug).first_or_404()
-    if int(current_user.get_id()) == scroller.user_id:
-        if scroller.customhaiku_id == None:
-            haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
-        else:
-            haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-        line_one = haiku.line_one.split()
-        line_two = haiku.line_two.split()
-        line_three = haiku.line_three.split()
-        msg = ''
-        if scroller.longmessage_id:
-            msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-            msg = msg.msg.splitlines(True)
-        mood = Mood.query.filter_by(id=scroller.mood_id).first()
-        edit_allowed = True
-        return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
-    else:
+    try:
+        if session['authored'] == slug or int(current_user.get_id()) == scroller.user_id:
+            if scroller.customhaiku_id == None:
+                haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+            else:
+                haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            line_one = haiku.line_one.split()
+            line_two = haiku.line_two.split()
+            line_three = haiku.line_three.split()
+            msg = ''
+            if scroller.longmessage_id:
+                msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+                msg = msg.msg.splitlines(True)
+            mood = Mood.query.filter_by(id=scroller.mood_id).first()
+            edit_allowed = True
+            return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
+    except:
         return render_template('unauthorised.html')
 
 # Route for the recipient to view only
@@ -126,6 +126,8 @@ def post_create():
 
         session['slug'] = slug
         session['logged_in'] = logged_in
+        # Store slug of current scroller in session to check if authored when attempting to edit
+        session['authored'] = slug
 
         return redirect(url_for('scrollers.success'))
     except Exception as error_message:
@@ -177,26 +179,25 @@ def delete_scroller(slug):
         return render_template('unauthorised.html')
 
 @blueprint.get('/edit/<slug>')
-@login_required
 def get_edit_scroller(slug):
     scroller = Scroller.query.filter_by(slug=slug).first()
-    # Only allow view to edit of scroller if logged in user matches otherwise throw unauthorised error
+    # Only allow view to edit of scroller if logged in user matches or if slug matches authored from session, otherwise throw unauthorised error
     # Avoids eg, a different logged in user being able to edit scroller by adding '/view/ to known URL
-    if int(current_user.get_id()) == scroller.user_id:
-        if scroller.customhaiku_id != None:
-            haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-            default_haiku = False
-        else:
-            haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
-            default_haiku = True
-        msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-        mood = Mood.query.filter_by(id=scroller.mood_id).first()
-        return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
-    else:
+    try:
+        if session['authored'] == slug or int(current_user.get_id()) == scroller.user_id:
+            if scroller.customhaiku_id != None:
+                haiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+                default_haiku = False
+            else:
+                haiku = Defaulthaiku.query.filter_by(id=scroller.defaulthaiku_id).first()
+                default_haiku = True
+            msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            mood = Mood.query.filter_by(id=scroller.mood_id).first()
+            return render_template('scrollers/edit.html', scroller=scroller, haiku=haiku, msg=msg, mood=mood, default_haiku=default_haiku)
+    except:
         return render_template('unauthorised.html')
 
 @blueprint.post('/edit/<slug>')
-@login_required
 def post_edit_scroller(slug):    
     try:
         # Validate required fields
