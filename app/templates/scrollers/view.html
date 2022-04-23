@@ -121,7 +121,9 @@
                     </g>
                   </svg>
             </div>
-            <div class="blossom-container">
+            <div class="seasonal-a-container">
+              {% if mood == 'spring' %}
+                <!-- BLOSSOMS -->
                 <div class="blossom reveal" id="blossom-one">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.43 57.09">
                         <g id="Layer_2" data-name="Layer 2">
@@ -158,6 +160,29 @@
                         </g>
                       </svg>
                 </div>
+              {% elif mood == 'autumn' %}
+              <!-- LEAVES -->
+              <div class="leaf reveal" id="leaf-one">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.74 74.1">
+                  <path id="leaf-one" d="M1.44,0S-13.62,84,53.67,73.13C53.67,73.13,57.79,30.86,1.44,0Z" fill="#d9a17d"/>
+                </svg>
+              </div>
+              <div class="leaf reveal" id="leaf-two">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.12 59.7">
+                  <path id="leaf-two" d="M86.12,1.94S19.11-16,0,57.29C0,57.29,49.94,77.3,86.12,1.94Z" fill="#d9a17d"/>
+                </svg>
+              </div>
+              <div class="leaf reveal" id="leaf-three">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.05 65.9">
+                  <path id="leaf-three" d="M76.05,65.9S12.51,58.88,0,0C0,0,71.69,9.29,76.05,65.9Z" fill="#d9a17d"/>
+                </svg>
+              </div>
+              <div class="leaf reveal" id="leaf-four">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.9 95.16">
+                      <path id="leaf-four" d="M6.79,95.16S-23.69,32.84,44.55,0C44.55,0,73.79,45.16,6.79,95.16Z" fill="#d9a17d"/>
+                </svg>
+              </div>
+              {% endif %}
             </div>
         </div>
         <div>
