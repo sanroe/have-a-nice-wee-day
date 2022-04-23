@@ -10,6 +10,7 @@
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/background.css')}}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/foreground.css')}}" />
+    <script src="{{ url_for('static', filename='js/scroller.js')}}"></script>
     {% endblock %}
 
 {% block title %}have a nice wee day &ndash; view{% endblock %}
@@ -31,13 +32,13 @@
         <div>
             <h3>{{ scroller.to_recipient_name }}...</h3>
             <div class="intro-text">
-                <p>this</p>
-                <p>one's</p>
-                <p>for</p>
-                <p>you</p>
+                <p class="reveal">this</p>
+                <p class="reveal">one's</p>
+                <p class="reveal">for</p>
+                <p class="reveal">you</p>
             </div>
         </div>
-        <div class="secondary-char"></div>
+        <div class="secondary-char reveal"></div>
         <div class="blob">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 929.21 579.1">
                 <g id="Layer_2" data-name="Layer 2">
@@ -50,11 +51,11 @@
     </section>
     <section class="frame" id="two-quick">
         <div>
-            <p>a</p>
-            <p>quick</p>
-            <p>haiku</p>
+            <p class="reveal">a</p>
+            <p class="reveal">quick</p>
+            <p class="reveal"> haiku</p>
         </div>
-        <div class="lemon">
+        <div class="lemon reveal">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.12 44.98">
                 <g id="Layer_2" data-name="Layer 2">
                   <g id="Layer_8" data-name="Layer 8">
@@ -70,7 +71,7 @@
         </div>
     </section>
     <section id="three-visual">
-        <div class="drops-container">
+        <div class="drops-container reveal">
             <div class="drops">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.01 93.88">
                 <g id="Layer_2" data-name="Layer 2">
@@ -84,7 +85,7 @@
               </svg>
             </div>
         </div>
-        <div class="jug-container">
+        <div class="jug-container reveal">
             <div class="jug">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194.16 203.14">
                 <g id="Layer_2" data-name="Layer 2">
@@ -121,7 +122,7 @@
                   </svg>
             </div>
             <div class="blossom-container">
-                <div class="blossom" id="blossom-one">
+                <div class="blossom reveal" id="blossom-one">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.43 57.09">
                         <g id="Layer_2" data-name="Layer 2">
                         <g id="Layer_7" data-name="Layer 7">
@@ -130,7 +131,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="blossom" id="blossom-two">
+                <div class="blossom reveal" id="blossom-two">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.52 55.88">
                         <g id="Layer_2" data-name="Layer 2">
                           <g id="Layer_7" data-name="Layer 7">
@@ -139,7 +140,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="blossom" id="blossom-three">
+                <div class="blossom reveal" id="blossom-three">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.52 55.88">
                         <g id="Layer_2" data-name="Layer 2">
                           <g id="Layer_7" data-name="Layer 7">
@@ -148,7 +149,7 @@
                         </g>
                       </svg>
                 </div>
-                <div class="blossom" id="blossom-four">
+                <div class="blossom reveal" id="blossom-four">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.64 52.7">
                         <g id="Layer_2" data-name="Layer 2">
                           <g id="Layer_7" data-name="Layer 7">
@@ -161,7 +162,7 @@
         </div>
         <div>
             {% for line in line_one %}
-            <p>{{ line }}</p>
+            <p class="reveal">{{ line }}</p>
             {% endfor %}
         </div>
     </section>
@@ -186,7 +187,7 @@
                   </svg>
             </div>
         </div>
-        <div class="bud-container">
+        <div class="bud-container reveal">
             <div class="bud">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102.24 139.97">
                     <g id="Layer_2" data-name="Layer 2">
@@ -203,10 +204,10 @@
         </div>
         <div>
             {% for next_line in line_two %}
-            <p>{{ next_line }}</p>
+            <p class="reveal">{{ next_line }}</p>
             {% endfor %}
         </div>
-        <div class="bud-container">
+        <div class="bud-container reveal">
             <div class="bud-two">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.73 237.92">
                     <g id="Layer_2" data-name="Layer 2">
@@ -236,10 +237,10 @@
         </div>
         <div>
             {% for last_line in line_three %}
-            <p>{{ last_line }}</p>
+            <p class="reveal">{{ last_line }}</p>
             {% endfor %}
         </div>
-        <div class="tree-container">
+        <div class="tree-container reveal">
             <div class="tree-graphic">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469 658.07">
                 <g id="Layer_2" data-name="Layer 2">
@@ -293,13 +294,13 @@
             </div>
         </div>
         {% if msg %}
-        <div id="longer-message">
+        <div class="reveal" id="longer-message">
             {% for each in msg %}
                 <p>{{ each }}</p>
             {% endfor %}
         </div>
         {% endif %}
-        <h3 id="from-text">{{ scroller.from_sender_name }}</h3>
+        <h3 class="reveal" id="from-text">{{ scroller.from_sender_name }}</h3>
     </section>
 </main>
 {% endblock %}
