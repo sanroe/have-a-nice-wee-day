@@ -48,8 +48,9 @@ def view(slug):
         msg = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
         msg = msg.msg.splitlines(True)
     mood = Mood.query.filter_by(id=scroller.mood_id).first()
+    mood_name = mood.name
     edit_allowed = False
-    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood, edit_allowed=edit_allowed)
+    return render_template('scrollers/view.html', scroller=scroller, line_one=line_one, line_two=line_two, line_three=line_three, msg=msg, mood=mood_name, edit_allowed=edit_allowed)
 
 @blueprint.get('/create')
 def get_create():
