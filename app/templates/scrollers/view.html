@@ -3,7 +3,14 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/scroller.css')}}" />
-{% endblock %}
+    {% if mood == 'spring' %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/spring.css')}}" />
+    {% elif mood == 'autumn' %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/autumn.css')}}" />
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/background.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/foreground.css')}}" />
+    {% endblock %}
 
 {% block title %}have a nice wee day &ndash; view{% endblock %}
 
@@ -11,7 +18,7 @@
 {% if edit_allowed %}
   <header>
     <div class="edit-header">
-      <h3><a href="/edit/{{ scroller.slug }}">edit</a></h3>
+      <h2><a href="/edit/{{ scroller.slug }}">edit</a></h2>
     </div>
   </header>
 {% endif %}

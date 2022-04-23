@@ -1,0 +1,73 @@
+.full-width {
+    position: relative;
+}
+
+.blob {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+    width: 100vmax;
+    z-index: -1;
+    animation: shifting 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    overflow: hidden;
+}
+
+#big-blob-one svg path {
+    fill: var(--pastelone);
+}
+
+#big-blob-two svg path {
+    fill: var(--pasteltwo);
+}
+
+#big-blob-three svg path {
+    fill: var(--pastelfour);
+}
+
+#big-blob-four svg path {
+    fill: var(--pastelsix);
+}
+
+#big-blob-five svg path {
+    fill: var(--pastelseven);
+}
+
+.small-blob-one {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+    width: 100vmax;
+    z-index: -1;
+    animation: shifting 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    overflow: hidden;
+}
+
+.small-blob-one svg path {
+    fill: var(--pastelthree);
+}
+
+.small-blob-two {
+    position: absolute;
+    bottom: 0;
+    right: -50%;
+    width: 100vmax;
+    z-index: -1;
+    animation: shifting 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    overflow: hidden;
+}
+
+.small-blob-two svg path {
+    fill: var(--pastelfive);
+}
+
+@keyframes shifting {
+    0%   { transform: scale(1)   translate(10px, -30px); }
+    37%  { transform: scale(0.8, 1) translate(10vw, 10vh) rotate(5deg); }
+    40%  { transform: scale(0.8, 1) translate(10vw, 10vh) rotate(5deg); }
+    77%  { transform: scale(1.3) translate(5vw, 5vh) rotate(-10deg); }
+    80%  { transform: scale(1.3) translate(5vw, 5vh) rotate(-10deg); }
+    100% { transform: scale(1)   translate(10px, -30px); }
+}

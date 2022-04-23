@@ -1,0 +1,315 @@
+/* CHARACTERS */
+
+
+/* MAIN CHARACTER */
+
+.main-char {
+    background-image: url("../img/char-1.svg");
+    background-repeat: no-repeat;
+    /* background-color: red; */
+    margin-top: 10vh;
+    height: 65vh;
+    width: 40vw;
+    max-width: 600px;
+    background-position: left;
+    float: left;
+    animation: breathe 2s ease-in 2s infinite;
+}
+
+@keyframes breathe {
+    from {background-image: url("../img/char-1.svg"); }
+    to {background-image: url("../img/char-2.svg"); }
+}
+
+/* SECONDARY CHARACTER */
+
+.secondary-char {
+    background-image: url("../img/secondary-char-1.svg");
+    background-repeat: no-repeat;
+    /* background-color: orange; */
+    height: 10vh;
+    width: 20vw;
+    max-width: 200px;
+    background-position: right;
+    position: absolute;
+    bottom: 2%;
+    right: 0;
+    animation: walking 10s ease-in-out infinite;
+}
+
+@keyframes walking {
+    0% {background-image: url("../img/secondary-char-1.svg"); right: -20vw; bottom: 2%;}
+    9% {background-image: url("../img/secondary-char-2.svg"); right: 0vw; bottom: 3%;}
+    18% {background-image: url("../img/secondary-char-1.svg"); right: 9vw; bottom: 2%;}
+    27% {background-image: url("../img/secondary-char-2.svg"); right: 20vw; bottom: 2%;}
+    36% {background-image: url("../img/secondary-char-1.svg"); right: 30vw; bottom: 2%;}
+    45% {background-image: url("../img/secondary-char-2.svg"); right: 40vw; bottom: 3%;}
+    54% {background-image: url("../img/secondary-char-1.svg"); right: 50vw; bottom: 2%;}
+    63% {background-image: url("../img/secondary-char-2.svg"); right: 65vw; bottom: 2%;}
+    72% {background-image: url("../img/secondary-char-1.svg"); right: 75vw; bottom: 2%;}
+    81% {background-image: url("../img/secondary-char-2.svg"); right: 85vw; bottom: 3%;}
+    100% {background-image: url("../img/secondary-char-2.svg"); right: 100vw; bottom: 2%;}
+}
+
+/* FRUIT ANIMATION */
+
+/* LEMON */
+
+.lemon {
+    width: 170px;
+    margin: auto;
+    z-index: 1;
+    overflow: visible;
+}
+
+.lemon svg {
+    overflow: visible;
+}
+
+#lemon-top, #lemon-in {
+    animation: splitting-top 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes splitting-top {
+    0% { transform: translate(0, 0) rotate(0deg);}
+    100% { transform: translate(-60%, 100%) rotate(35deg); }
+}
+
+#lemon-bottom {
+    animation: splitting-bottom 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes splitting-bottom {
+    0% { transform: translate(0, 0) rotate(0deg);}
+    100% { transform: translate(50vw, -40vh) rotate(90deg); }  
+}
+
+/* MANDARIN */
+
+.mandarin {
+    width: 170px;
+    margin: auto;
+    z-index: 1;
+    overflow: visible;
+}
+
+.mandarin svg {
+    overflow: visible;
+}
+
+#mandarin-top, #mandarin-in {
+    animation: splitting-top 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+#mandarin-bottom {
+    animation: splitting-bottom 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+/* JUG */
+
+.jug {
+    width: 50vw;
+    max-width: 400px;
+    animation: pouring 20s ease-in-out infinite; 
+    transform-origin: 50% 50%;
+}
+
+#jug-handle {
+    fill: var(--juice);
+}
+
+#jug-outline {
+    stroke: var(--jug);
+}
+
+#fruit-juice {
+    visibility: hidden;
+    animation: juicing 20s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    transition: opacity 1s ease-in-out;
+    fill: var(--juice);
+}
+
+@keyframes pouring {
+    50% { transform: rotate(0deg);}
+    88% { transform: rotate(90deg);}
+}
+
+@keyframes juicing {
+    50% { visibility: visible; opacity: 0.5;}
+    55% { opacity: 1.0; }
+    75% { opacity: 1.0; }
+    80% { opacity: 0.5; }
+    88% { visibility: hidden; }
+}
+
+.drops-container {
+    width: 100px;
+    position: relative;
+    left: 25%;
+    top: 5vh;
+    z-index: 3;
+}
+
+#juice-drops path {
+    fill: var(--juice);
+}
+
+/* SEASONAL */
+
+/* SEASONAL ARTIFACT A */
+
+.seasonal-a-container {
+    position: relative;
+}
+
+.blossom {
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    animation: falling 10s ease-in-out infinite; 
+}
+
+.leaf {
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    animation: falling 10s ease-in-out infinite; 
+}
+
+#blossom-one, #leaf-one {
+    position: absolute;
+    top: 0;
+    left: 5vw;
+}
+
+#blossom-two, #leaf-two {
+    position: absolute;
+    top: 0;
+    right: 5vw;
+}
+
+#blossom-three, #leaf-three {
+    position: absolute;
+    top: 70vh;
+    left: 15vw;
+}
+
+#blossom-four, #leaf-four {
+    position: absolute;
+    top: 55vh;
+    right: 10vw;
+}
+
+#leaf-two, #leaf-three {
+    height: 70px;
+    width: 70px;
+}
+
+@keyframes falling {
+    0%   { transform: translate(10px, -30px); }
+    37%  { transform: translate(10vw, 10vh) rotate(10deg); }
+    40%  { transform: translate(10vw, 10vh) rotate(5deg); }
+    77%  { transform: translate(5vw, 5vh) rotate(-20deg); }
+    80%  { transform: translate(5vw, 5vh) rotate(-5deg); }
+    100% { transform: translate(10px, -30px); }
+}
+
+/* SEASONAL ARTIFACT B */
+
+.bud-container {
+    position: relative;
+}
+
+div.bud {
+    width: 30vw;
+    max-width: 200px;
+    z-index: 2;
+    float: left;
+    position: absolute;
+    left: -10vw;
+}
+
+div.bud-two {
+    width: 30vw;
+    max-width: 200px;
+    z-index: 2;
+    float: right;
+    position: absolute;
+    right: -10vw;
+    bottom: -15vh;
+}
+
+#flower-bud-1 {
+    animation: budding 7s ease-in-out infinite;
+    transform-origin: 78% 19%;
+}
+
+#flower-bud-2 {
+    animation: budding 7s ease-in-out infinite;
+    transform-origin: 21% 16%;
+}
+
+@keyframes budding {
+    0% { transform: scale(0); fill: #fbb8ad;}
+    50% { transform: scale(0); fill: #fbb8ad;}
+    100% { transform: scale(1.0); fill: #C7869D;}
+}
+
+#stem-stroke-1, #stem-stroke-2 {
+    stroke-dasharray: 500;
+    stroke-dashoffset: -500;
+    animation: stem-grow 4s ease-in-out forwards;
+}
+
+@keyframes stem-grow {
+    to { stroke-dashoffset: 0;}
+}
+
+/* SEASONAL ARTIFACT C */
+
+.tree-graphic {
+    height: 40vh;
+}
+
+#flowers>* {
+    animation: growing 10s ease-in-out forwards;
+}
+
+#flowers circle {
+    fill: var(--treeshapes);
+}
+
+@keyframes growing {
+    0% { opacity: 0;}
+    80% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+#branches path, line, polyline {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: -1000;
+    animation: dash 7s linear forwards;
+}
+
+@keyframes dash {
+    to { stroke-dashoffset: 0;}
+}
+
+/* SCROLL ANIMATIONS */
+
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
