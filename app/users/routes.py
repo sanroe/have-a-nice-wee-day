@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from app.scrollers.models import Scroller
 
@@ -121,6 +121,14 @@ def post_success_login():
     except Exception as error_message:
         error = error_message or 'an error occurred while trying to log you in. please make sure to enter valid data.'
         return render_template('scrollers/success.html', slug=session['slug'], logged_in=session['logged_in'], has_account=True, error=error)
+
+# Blueprint for managing account
+@blueprint.route('/manage')
+@login_required
+def get_manage_account():
+    user_id = int(current_user.get_id())
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('users/manage.html', user=user)
 
 # Blueprint for unauthorised actions, 401 error
 @blueprint.route('/unauthorised')

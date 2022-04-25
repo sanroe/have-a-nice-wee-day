@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}have a nice wee day &ndash; manage{% endblock %}
+
+{% block body %}
+    <main class="manage-account">
+        <h1>your account</h1>
+        <form method="POST" class="update-details-form">
+            <div>
+                <label for="email">update email</label>
+                <input type="email" name="email" id="email" required autocomplete="username" />
+            </div>
+
+            <div>
+                <label for="password">new password</label>
+                <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" placeholder="(minimum 8 characters)" />
+            </div>
+
+            <div>
+                <label for="password_confirmation">confirm new password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
+            </div>
+
+            <input type="submit" value="update details" />
+        </form>
+        <br>
+        <ul>
+            <li><a href="/delete/all/{{ user.id }}">delete my account and all my scrollers</a></li>
+            <li><a href="/delete/{{ user.id }}">delete my account but leave my scrollers (you will not be able to delete your scrollers later)</li>
+        </ul>
+        <p class="text-right"><a href="/myscrollers">back to my scrollers</a></p>
+    </main>
+{% endblock %}

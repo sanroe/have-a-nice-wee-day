@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="scrollers-list">
-        <h2>your scrollers</h2>
+        <h1>your scrollers</h1>
         <ul>
             {% for scroller in my_scrollers_pagination.items %}
                 <li>
@@ -29,5 +29,7 @@
                 <span hidden>next page</span>
             {% endif %}
         </nav>
+
+        <p class="text-right"><a href="/manage">manage account</a></p>
     </main>
 {% endblock %}
