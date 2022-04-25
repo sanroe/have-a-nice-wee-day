@@ -165,7 +165,7 @@ def post_manage_account():
         error = error_message or 'an error occurred while trying to update your details. please make sure to enter valid data.'
         return render_template('users/manage.html', user=user, error=error)
 
-@blueprint.route('/delete/all/<user_id>')
+@blueprint.route('/delete/user/all/<user_id>')
 @login_required
 def delete_all_user_and_scrollers(user_id):
     user_id = int(current_user.get_id())
@@ -178,6 +178,14 @@ def delete_all_user_and_scrollers(user_id):
             longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
             longmessage.delete()
         scroller.delete()
+    user = User.query.filter_by(id=user_id).first()
+    user.delete()
+    return redirect(url_for('basic_pages.index'))
+
+@blueprint.route('/delete/user/<user_id>')
+@login_required
+def delete_user_only(user_id):
+    user_id = int(current_user.get_id())
     user = User.query.filter_by(id=user_id).first()
     user.delete()
     return redirect(url_for('basic_pages.index'))
