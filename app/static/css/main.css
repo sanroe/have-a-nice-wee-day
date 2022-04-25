@@ -239,7 +239,7 @@ input[type=submit]:hover {
     justify-content: flex-end;
 }
 
-.login-form div input, .register-form div input, {
+.login-form div input, .register-form div input {
     min-width: 250px;
     width: 80%;
 }
