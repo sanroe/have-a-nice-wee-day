@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, sessio
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
-from app.scrollers.models import Scroller
+from app.scrollers.models import Scroller, Customhaiku, Longmessage
 
 blueprint = Blueprint('users', __name__)
 
@@ -132,7 +132,7 @@ def post_success_login():
         error = error_message or 'an error occurred while trying to log you in. please make sure to enter valid data.'
         return render_template('scrollers/success.html', slug=session['slug'], logged_in=session['logged_in'], has_account=True, error=error)
 
-# Blueprint for managing account
+# Blueprints for managing account
 @blueprint.get('/manage')
 @login_required
 def get_manage_account():
@@ -164,6 +164,23 @@ def post_manage_account():
     except Exception as error_message:
         error = error_message or 'an error occurred while trying to update your details. please make sure to enter valid data.'
         return render_template('users/manage.html', user=user, error=error)
+
+@blueprint.route('/delete/all/<user_id>')
+@login_required
+def delete_all_user_and_scrollers(user_id):
+    user_id = int(current_user.get_id())
+    user_scrollers = Scroller.query.filter_by(user_id=user_id).all()
+    for scroller in user_scrollers:
+        if scroller.customhaiku_id != None:
+            customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+            customhaiku.delete()
+        if scroller.longmessage_id != None:
+            longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+            longmessage.delete()
+        scroller.delete()
+    user = User.query.filter_by(id=user_id).first()
+    user.delete()
+    return redirect(url_for('basic_pages.index'))
 
 # Blueprint for unauthorised actions, 401 error
 @blueprint.route('/unauthorised')

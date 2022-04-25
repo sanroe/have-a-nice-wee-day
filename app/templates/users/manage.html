@@ -26,9 +26,17 @@
         <p class="text-center">{{ confirmation_message }}</p>
         <br>
         <ul>
-            <li><a href="/delete/all/{{ user.id }}">delete my account and all my scrollers</a></li>
+            <li><a href="javascript:void(0);" onclick="confirmDeleteAll();">delete my account and all my scrollers</a></li>
             <li><a href="/delete/{{ user.id }}">delete my account but leave my scrollers (you will not be able to delete your scrollers later)</li>
         </ul>
         <p class="text-right"><a href="/myscrollers">back to my scrollers</a></p>
     </main>
+    <script>
+        function confirmDeleteAll() {
+            let proceed = confirm('Are you sure you want to delete your account and all your scrollers?')
+            if (proceed) {
+                window.location.href = "/delete/all/{{ user.id }}";
+            }
+        }
+    </script>
 {% endblock %}
