@@ -8,7 +8,6 @@
 
 body {
     max-width: 1280px;
-    max-height: 100vh;
     margin: 0 auto;
     padding: 0 20px;
 
@@ -21,6 +20,10 @@ main {
     padding-top: 2rem;
     padding-left: 1rem;
     padding-right: 2rem;
+}
+
+.landing-body {
+    max-height: 100vh;
 }
 
 header {
@@ -83,6 +86,7 @@ footer {
     font-size: 0.75em;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    text-align: right;
 }
 
 .footer-fixed {
@@ -130,6 +134,7 @@ textarea {
     background-repeat: no-repeat;
     height: 70vh;
     background-position: 20% 20vh;
+    min-height: 500px;
 }
 
 .landing {

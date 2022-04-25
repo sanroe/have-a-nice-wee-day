@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}" />
     {% endblock %}
 </head>
-<body {% block overflow %}{% endblock %}>
+<body {% block bodyclasses %}{% endblock %}>
     {% block header %}
     <header>
         <div class="header-left">
@@ -27,10 +27,10 @@
     </header>
     {% endblock %}
     {% block body %}{% endblock %}
+    {% block footer %}
     <footer {% block footerposition %}{% endblock %}>
-        {% block footer %}
         <p>&copy; 2022 have a nice wee day. all rights reserved.<span><a href='/legal'>legal notices</a><span></p>
-        {% endblock %}
-        </footer>
+    </footer>
+    {% endblock %}
 </body>
 </html>
