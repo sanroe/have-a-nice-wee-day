@@ -225,35 +225,39 @@ input[type=submit]:hover {
     text-decoration-thickness: 2px;
 }
 
-.login-form {
+.login-form, .register-form {
     width: 60%;
     max-width: 500px;
     margin: auto;
     align-items: flex-start;
 }
 
-.login-form div {
+.login-form div, .register-form div {
     width: 100%;
     margin-bottom: 1rem;
     display: inline-flex;
     justify-content: flex-end;
 }
 
-.login-form div input {
+.login-form div input, .register-form div input {
     min-width: 250px;
     width: 80%;
 }
 
-.login-form label {
+.login-form label, .register-form label {
     padding-right: 0.5rem;
     align-self: center;
 }
 
-.login-form input[type=submit] {
-    min-width: 100px;
+.login-form input[type=submit], .register-form input[type=submit] {
+    min-width: 120px;
     width: 40%;
     max-width: 300px;
     margin: auto;
+}
+
+.success-register {
+    margin-bottom: 2rem;
 }
 
 .edit-header {

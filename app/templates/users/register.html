@@ -4,21 +4,21 @@
 
 {% block body %}
     <main class="register">
-        <h2 class="text-center">register</h2>
+        <h1 class="text-center">register</h1>
 
-        <form method="POST">
+        <form method="POST" class="register-form">
             <div>
                 <label for="email">email</label>
                 <input type="email" name="email" id="email" required autofocus autocomplete="username" />
             </div>
 
             <div>
-                <label for="password">password (minimum 8 characters)</label>
-                <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" />
+                <label for="password">password</label>
+                <input type="password" name="password" id="password" minlength="8" maxlength="120" required autocomplete="new-password" placeholder="(minimum 8 characters)" />
             </div>
 
             <div>
-                <label for="password_confirmation">password confirmation</label>
+                <label for="password_confirmation">confirm password</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" required minlength="8" maxlength="120" />
             </div>
 
