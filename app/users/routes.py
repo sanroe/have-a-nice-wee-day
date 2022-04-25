@@ -32,6 +32,8 @@ def post_register():
             scroller = Scroller.query.filter_by(slug=slug).first()
             scroller.user_id = user.id
             scroller.save()
+            # Reset session attribute to falsey to fix bug on login and outs later
+            session['slug'] = None
 
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
@@ -60,6 +62,8 @@ def post_login():
             scroller = Scroller.query.filter_by(slug=slug).first()
             scroller.user_id = user.id
             scroller.save()
+            # Reset session attribute to falsey to fix bug on login and outs later
+            session['slug'] = None
 
         return redirect(url_for('scrollers.myscrollers'))
     
@@ -70,6 +74,8 @@ def post_login():
 @blueprint.get('/logout')
 def logout():
     logout_user()
+    # Reset session attribute to falsey to fix bug on login and outs later
+    session['slug'] = None
 
     return redirect(url_for('basic_pages.index'))
 
@@ -93,6 +99,8 @@ def post_success_register():
         scroller = Scroller.query.filter_by(slug=slug).first()
         scroller.user_id = user.id
         scroller.save()
+        # Reset session attribute to falsey to fix bug on login and outs later
+        session['slug'] = None
 
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
@@ -116,6 +124,8 @@ def post_success_login():
         scroller = Scroller.query.filter_by(slug=slug).first()
         scroller.user_id = user.id
         scroller.save()
+        # Reset session attribute to falsey to fix bug on login and outs later
+        session['slug'] = None
 
         return redirect(url_for('scrollers.myscrollers'))
     except Exception as error_message:
@@ -123,12 +133,37 @@ def post_success_login():
         return render_template('scrollers/success.html', slug=session['slug'], logged_in=session['logged_in'], has_account=True, error=error)
 
 # Blueprint for managing account
-@blueprint.route('/manage')
+@blueprint.get('/manage')
 @login_required
 def get_manage_account():
     user_id = int(current_user.get_id())
     user = User.query.filter_by(id=user_id).first()
     return render_template('users/manage.html', user=user)
+
+@blueprint.post('/manage')
+@login_required
+def post_manage_account():
+    user_id = int(current_user.get_id())
+    user = User.query.filter_by(id=user_id).first()
+    try:
+        if request.form.get('email'):
+            if User.query.filter_by(email=request.form.get('email')).first():
+                return render_template('users/manage.html', error='the email address is registered to someone else.')
+            else:
+                user.email = request.form.get('email')
+                user.save()
+        if request.form.get('password'):
+            if request.form.get('password') != request.form.get('password_confirmation'):
+                return render_template('users/manage.html', error='the password confirmation must match the password.')
+            else:
+                user.password=generate_password_hash(request.form.get('password'))
+                user.save()
+        login_user(user)
+        confirmation_message = "done!"
+        return render_template('users/manage.html', user=user, confirmation_message=confirmation_message)
+    except Exception as error_message:
+        error = error_message or 'an error occurred while trying to update your details. please make sure to enter valid data.'
+        return render_template('users/manage.html', user=user, error=error)
 
 # Blueprint for unauthorised actions, 401 error
 @blueprint.route('/unauthorised')
