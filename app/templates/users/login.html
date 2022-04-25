@@ -4,9 +4,9 @@
 
 {% block body %}
     <main class="login">
-        <h2 class="text-center">login</h2>
+        <h1 class="text-center">login</h1>
 
-        <form method="POST">
+        <form method="POST" class="login-form">
             <div>
                 <label for="email">email</label>
                 <input type="email" name="email" id="email" required autofocus autocomplete="username" />
@@ -26,7 +26,7 @@
         
         <div id="register-text">
             <p>don't have an account?</p>
-            <p><a href="/register">register here</a> to save and edit your scrollers for easier access</p>
+            <p><a href="/register" class="link-underline">register here</a> to save and edit your scrollers for easier access</p>
         </div>
     </main>
 {% endblock %}

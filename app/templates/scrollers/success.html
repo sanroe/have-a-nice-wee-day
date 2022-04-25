@@ -42,14 +42,14 @@
                     <input type="submit" name="submit_button" value="create account" />
                 </form>
             </div>
-            <p>already have an account? <a href="/success/login">click here to log in</a></p>
+            <p>already have an account? <a href="/success/login" class="link-underline">click here to log in</a></p>
         
         {% endif %}
 
         {% if has_account %}
-            <h3 class="text-center">login</h3>
+            <h2 class="text-center">login</h2>
             <div class="success-login">
-                <form method="POST">
+                <form method="POST" class="login-form">
                     <div>
                         <label for="email">email</label>
                         <input type="email" name="email" id="email" required autocomplete="username" />

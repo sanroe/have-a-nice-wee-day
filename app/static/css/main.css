@@ -61,7 +61,7 @@ input {
     font-family: inherit;
 }
 
-input[type=text] {
+input[type=text], input[type=email], input[type=password] {
     /* width: 90vw;
     max-width: 450px; */
     padding: 0.5rem;
@@ -150,7 +150,7 @@ textarea {
     margin-left: 2rem;
 }
 
-.create input[type=submit] {
+input[type=submit] {
     background-color: pink;
     font-family: inherit;
     color: white;
@@ -162,7 +162,7 @@ textarea {
     transition: all 200ms ease-in;
 }
 
-.create input[type=submit]:hover {
+input[type=submit]:hover {
     background-color: darkmagenta;
 }
 
@@ -215,6 +215,45 @@ textarea {
 #register-text {
     font-size: 0.9rem;
     text-align: center;
+    width: 60%;
+    margin: 2rem auto;
+}
+
+.link-underline {
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-decoration-thickness: 2px;
+}
+
+.login-form {
+    width: 60%;
+    max-width: 500px;
+    margin: auto;
+    align-items: flex-start;
+}
+
+.login-form div {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.login-form div input {
+    min-width: 250px;
+    width: 80%;
+}
+
+.login-form label {
+    padding-right: 0.5rem;
+    align-self: center;
+}
+
+.login-form input[type=submit] {
+    min-width: 100px;
+    width: 40%;
+    max-width: 300px;
+    margin: auto;
 }
 
 .edit-header {
