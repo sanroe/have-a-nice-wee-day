@@ -19,6 +19,8 @@ body {
 
 main {
     padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
 }
 
 h1 {
