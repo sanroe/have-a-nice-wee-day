@@ -25,9 +25,9 @@
             <div>
                 <p class="text-center">the message</p>
                 <p class="text-center">pick one of ours or make your own?</p>
-                <input type="radio" id="pick-ours" name="default-message" value="True" onclick="hideCustomhaikuForm();" {% if default_haiku %} checked="checked" {% endif%}/>
+                <input type="radio" id="pick-ours" name="default-message" value="True" {% if default_haiku %} checked="checked" {% endif%}/>
                 <label for="pick-ours">let's see what you've got. surprise me!</label><br />
-                <input type="radio" id="make-your-own" name="default-message" value="False" onclick="showCustomhaikuForm();" {% if not default_haiku %} checked="checked" {% endif%} />
+                <input type="radio" id="make-your-own" name="default-message" value="False" {% if not default_haiku %} checked="checked" {% endif%} />
                 <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label><br /><br />         
             </div>
             <div class="center" id="for-custom-haiku-edit" >
@@ -49,14 +49,13 @@
             <input type="submit" value="update scroller" />
         </form>
 
-        <script>
-            function showCustomhaikuForm() {
+        <script>        
+            document.getElementById('make-your-own').addEventListener('click', function showCustomhaikuForm() {
                 document.getElementById("for-custom-haiku-edit").style.display = "block";
-            }
-
-            function hideCustomhaikuForm() {
+            });
+            document.getElementById('pick-ours').addEventListener('click', function hideCustomhaikuForm() {
                 document.getElementById("for-custom-haiku-edit").style.display = "none";
-            }
+            });
         </script>
 
         {% if error %}
