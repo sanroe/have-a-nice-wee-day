@@ -4,6 +4,8 @@ blueprint = Blueprint('basic_pages', __name__)
 
 @blueprint.route('/')
 def index():
+    # Attempt to fix bug on live site when logging in or registering
+    session['slug'] = None
     return render_template('basic_pages/index.html')
 
 @blueprint.route('/about')
