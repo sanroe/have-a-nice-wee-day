@@ -165,30 +165,37 @@ def post_manage_account():
         error = error_message or 'an error occurred while trying to update your details. please make sure to enter valid data.'
         return render_template('users/manage.html', user=user, error=error)
 
-@blueprint.route('/delete/user/all/<user_id>')
+# Separate blueprint for delete page to handle as POST for improved security
+@blueprint.get('/manage/delete')
 @login_required
-def delete_all_user_and_scrollers(user_id):
-    user_id = int(current_user.get_id())
-    user_scrollers = Scroller.query.filter_by(user_id=user_id).all()
-    for scroller in user_scrollers:
-        if scroller.customhaiku_id != None:
-            customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
-            customhaiku.delete()
-        if scroller.longmessage_id != None:
-            longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
-            longmessage.delete()
-        scroller.delete()
-    user = User.query.filter_by(id=user_id).first()
-    user.delete()
-    return redirect(url_for('basic_pages.index'))
+def get_manage_delete():
+    return render_template('users/delete.html')
 
-@blueprint.route('/delete/user/<user_id>')
+@blueprint.post('/manage/delete')
 @login_required
-def delete_user_only(user_id):
-    user_id = int(current_user.get_id())
-    user = User.query.filter_by(id=user_id).first()
-    user.delete()
-    return redirect(url_for('basic_pages.index'))
+def post_manage_delete():
+    try:
+        if request.form['action'] == 'delete all':
+            user_id = int(current_user.get_id())
+            user_scrollers = Scroller.query.filter_by(user_id=user_id).all()
+            for scroller in user_scrollers:
+                if scroller.customhaiku_id != None:
+                    customhaiku = Customhaiku.query.filter_by(id=scroller.customhaiku_id).first()
+                    customhaiku.delete()
+                if scroller.longmessage_id != None:
+                    longmessage = Longmessage.query.filter_by(id=scroller.longmessage_id).first()
+                    longmessage.delete()
+                scroller.delete()
+            user = User.query.filter_by(id=user_id).first()
+            user.delete()
+            return redirect(url_for('basic_pages.index'))
+        elif request.form['action'] == 'delete account':
+            user_id = int(current_user.get_id())
+            user = User.query.filter_by(id=user_id).first()
+            user.delete()
+            return redirect(url_for('basic_pages.index'))
+    except:
+        return render_template('unauthorised.html')
 
 # Blueprint for unauthorised actions, 401 error
 @blueprint.route('/unauthorised')

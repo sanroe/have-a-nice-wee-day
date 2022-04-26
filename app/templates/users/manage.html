@@ -5,6 +5,7 @@
 {% block body %}
     <main class="manage-account">
         <h1>your account</h1>
+        <h2>manage</h2>
         <form method="POST" class="update-details-form">
             <div>
                 <label for="email">update email</label>
@@ -25,25 +26,8 @@
         </form>
         <p class="text-center">{{ confirmation_message }}</p>
         <br>
-        <ul>
-            <li><a href="javascript:void(0);" onclick="confirmDeleteAll();">delete my account and all my scrollers</a></li>
-            <li><a href="javascript:void(0);" onclick="confirmDeleteUser();">delete my account but leave my scrollers (you will not be able to delete or edit your scrollers later)</li>
-        </ul>
+        <p aria-labelledby="link-to-delete" class="text-center">want to delete your account and/or all of your scrollers? <a href="/manage/delete" class="link-underline" id="link-to-delete">head on over to the danger zone</a></p>
+        <br>
         <p class="text-right"><a href="/myscrollers">back to my scrollers</a></p>
     </main>
-    <script>
-        function confirmDeleteAll() {
-            let proceed = confirm('Are you sure you want to delete your account and all your scrollers?')
-            if (proceed) {
-                window.location.href = "/delete/user/all/{{ user.id }}";
-            }
-        }
-
-        function confirmDeleteUser() {
-            let proceed = confirm('Are you sure you want to delete your account? Your scrollers will remain but you will not be able to edit or delete them later.')
-            if (proceed) {
-                window.location.href = "/delete/user/{{ user.id }}";
-            }
-        }
-    </script>
 {% endblock %}
