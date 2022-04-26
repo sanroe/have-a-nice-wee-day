@@ -215,15 +215,13 @@ def post_edit_scroller(slug):
                 raise Exception('please complete your haiku!')
 
         # Clean to and from names to lowercase
-        to_name = request.form.get('to-recipient-name')
-        from_name = request.form.get('from-sender-name')
-        to_name_lower = to_name.lower()
-        from_name_lower = from_name.lower()
+        to_name = request.form.get('to-recipient-name').lower()
+        from_name = request.form.get('from-sender-name').lower()
 
         # Grab scroller record and update
         scroller = Scroller.query.filter_by(slug=slug).first()
-        scroller.to_recipient_name = to_name_lower
-        scroller.from_sender_name = from_name_lower
+        scroller.to_recipient_name = to_name
+        scroller.from_sender_name = from_name
         scroller.mood_id = request.form.get('mood')
         scroller.save()
 
