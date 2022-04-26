@@ -9,14 +9,19 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config')
 
-    Talisman(app, content_security_policy=GOOGLE_CSP_POLICY)
-
     register_extensions(app)
     register_blueprints(app)
 
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(401, unauthorised_page)
 
+    return app
+
+def talisman(app):
+    # Disable https if app is run in testing mode
+    force_https = False if app.config['TESTING'] else True
+
+    Talisman(app, content_security_policy=GOOGLE_CSP_POLICY, force_https=force_https)
     return app
 
 # Database

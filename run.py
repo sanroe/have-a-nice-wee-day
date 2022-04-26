@@ -1,6 +1,6 @@
-from app.app import create_app
+from app.app import create_app, talisman
 
-app = create_app()
+app = talisman(create_app())
 
 if __name__ == '__main__':
     app.run()
