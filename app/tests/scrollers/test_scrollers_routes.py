@@ -1,5 +1,6 @@
 from app.extensions.database import db
 from app.scrollers.models import Scroller
+from app.users.models import User
 
 def test_view_success(client):
     # Page loads if scroller exists
@@ -38,8 +39,17 @@ def test_post_create_scroller(client):
 
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
-    new_scroller = Scroller(slug='test-for-list', to_recipient_name='lisa')
-    new_scroller.save()
-    response = client.get('/myscrollers')
-
-    assert b'lisa' in response.data
+    # Creat fake user and log in
+    user = User(email='test2@test.test', password='test2')
+    db.session.add(user)
+    db.session.commit()
+    with client:
+        client.post('/login', data=dict(email='test2@test.test', password='test2'), follow_redirects=True)
+        # Create new scroller and assign user
+        new_scroller = Scroller(slug='test-for-list', to_recipient_name='lisa', user_id=user.id)
+        new_scroller.save()
+        db.session.add(new_scroller)
+        db.session.commit()
+        # Check saved scroller appears in list
+        response = client.get('/myscrollers')
+        assert b'lisa' in response.data
