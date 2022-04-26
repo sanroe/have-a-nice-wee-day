@@ -27,3 +27,19 @@ def test_manage_unauthorised_loads_if_not_logged_in(client):
     # Unauthorised page loads if not logged in
     response = client.get('/manage', follow_redirects=True)
     assert 'unauthorised' in response.get_data(as_text=True)
+
+def test_manage_logged_in_success(client):
+    # Page loads if logged in
+    with client:
+        client.post('/login', data=dict(email='test@test.test', password='test'), follow_redirects=True)
+        response = client.get('/manage')
+        assert response.status_code == 200
+
+def test_manage_logged_in_content(client):
+    # Returns if logged in
+    # Create fake user and log in
+    new_user = User(email='test@test.test', password='testing123')
+    new_user.save()
+    login_user(new_user)
+    response = client.get('/manage')
+    assert 'update email' in response.get_data(as_text=True)
