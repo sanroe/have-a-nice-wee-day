@@ -23,9 +23,9 @@
             <div>
                 <p class="text-center">the message</p>
                 <p class="text-center">pick one of ours or make your own?</p>
-                <input type="radio" id="pick-ours" name="default-message" value="True" onclick="hideCustomhaikuForm();" />
+                <input type="radio" id="pick-ours" name="default-message" value="True" />
                 <label for="pick-ours">let's see what you've got. surprise me!</label><br />
-                <input type="radio" id="make-your-own" name="default-message" value="False" onclick="showCustomhaikuForm();"/>
+                <input type="radio" id="make-your-own" name="default-message" value="False" />
                 <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label><br /><br />         
             </div>
             <div class="center" id="for-custom-haiku">
@@ -49,13 +49,13 @@
         </form>
 
         <script>
-            function showCustomhaikuForm() {
+            document.getElementById('make-your-own').addEventListener('click', function showCustomhaikuForm() {
                 document.getElementById("for-custom-haiku").style.display = "block";
-            }
+            });
 
-            function hideCustomhaikuForm() {
+            document.getElementById('pick-ours').addEventListener('click', function hideCustomhaikuForm() {
                 document.getElementById("for-custom-haiku").style.display = "none";
-            }
+            });
 
             const textarea = document.querySelector('textarea')
             const count = document.getElementById('long-message-count')
