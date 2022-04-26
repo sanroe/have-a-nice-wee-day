@@ -1,3 +1,6 @@
+from app.extensions.database import db
+from app.users.models import User
+
 def test_login_success(client):
     # Page loads
     response = client.get('/login')
@@ -30,6 +33,10 @@ def test_manage_unauthorised_loads_if_not_logged_in(client):
 
 def test_manage_logged_in_success(client):
     # Page loads if logged in
+    # Create fake user
+    user = User(email='test@test.test', password='test')
+    db.session.add(user)
+    db.session.commit()
     with client:
         client.post('/login', data=dict(email='test@test.test', password='test'), follow_redirects=True)
         response = client.get('/manage')
@@ -38,8 +45,10 @@ def test_manage_logged_in_success(client):
 def test_manage_logged_in_content(client):
     # Returns if logged in
     # Create fake user and log in
-    new_user = User(email='test@test.test', password='testing123')
-    new_user.save()
-    login_user(new_user)
-    response = client.get('/manage')
-    assert 'update email' in response.get_data(as_text=True)
+    user = User(email='testing@test.test', password='testing')
+    db.session.add(user)
+    db.session.commit()
+    with client:
+        client.post('/login', data=dict(email='testing@test.test', password='testing'), follow_redirects=True)
+        response = client.get('/manage')
+        assert 'update email' in response.get_data(as_text=True)
