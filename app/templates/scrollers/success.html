@@ -21,7 +21,7 @@
         <br />
         <p>or go ahead and share</p>
         <input type="text" id="scroller-link"  value="{{ site_url }}{{ slug }}" readonly />
-        <button onclick="copyLink()">copy link</button>
+        <button id="copy-link-button">copy link</button>
         <br />
         <br />
     
@@ -75,14 +75,14 @@
         {% endif %}
 
     <script>
-        function copyLink() {
+        document.getElementById('copy-link-button').addEventListener('click', function copyLink() {
             var copyText = document.getElementById("scroller-link");
 
             copyText.select();
             copyText.setSelectionRange(0, 99999);
 
             document.execCommand("copy");
-        }
+        });
     </script>
     
     </main>
