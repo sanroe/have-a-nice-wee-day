@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, request, current_app, redirect, url_for, session
 from .models import Scroller, Customhaiku, Defaulthaiku, Mood, Longmessage
 from flask_login import login_required, current_user
-import secrets
-import string
+from .utils import create_unique_slug
 
 blueprint = Blueprint('scrollers', __name__)
 
@@ -83,9 +82,7 @@ def post_create():
         from_name_lower = from_name.lower()
 
         # Create a unique slug
-        slug_prefix = to_name_lower.replace(" ", "-")
-        slug_suffix = ''.join(secrets.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in range(20))
-        slug = slug_prefix + '-' + slug_suffix
+        slug = create_unique_slug(request.form.get('to-recipient-name'))
 
         # Create a new scroller
         scroller = Scroller(
