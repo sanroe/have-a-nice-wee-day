@@ -36,21 +36,6 @@ def test_post_create_scroller(client):
     })
     assert Scroller.query.first() is not None
 
-def test_404_redirect(client):
-    # Nonexistent page redirects
-    response = client.get('/asdfejioj')
-    assert response.status_code == 302
-
-def test_404_success(client):
-    # Page loads
-    response = client.get('/404')
-    assert response.status_code == 200
-
-def test_404_content(client):
-    # Returns 404 content
-    response = client.get('/404')
-    assert 'Page not found' in response.get_data(as_text=True)
-
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
     new_scroller = Scroller(slug='test-for-list', to_recipient_name='lisa')
