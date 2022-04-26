@@ -76,10 +76,8 @@ def post_create():
                 raise Exception('please complete your haiku!')
 
         # Clean to and from names to lowercase
-        to_name = request.form.get('to-recipient-name')
-        from_name = request.form.get('from-sender-name')
-        to_name_lower = to_name.lower()
-        from_name_lower = from_name.lower()
+        to_name = request.form.get('to-recipient-name').lower()
+        from_name = request.form.get('from-sender-name').lower()
 
         # Create a unique slug
         slug = create_unique_slug(request.form.get('to-recipient-name'))
@@ -87,8 +85,8 @@ def post_create():
         # Create a new scroller
         scroller = Scroller(
             slug=slug,
-            to_recipient_name=to_name_lower,
-            from_sender_name=from_name_lower,
+            to_recipient_name=to_name,
+            from_sender_name=from_name,
             mood_id=request.form.get('mood')
         )
         scroller.save()
