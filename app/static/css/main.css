@@ -297,3 +297,11 @@ footer span {
 .text-right {
     text-align: right;
 }
+
+.text-smaller {
+    font-size: 0.7rem;
+}
+
+.text-grey {
+    color: gray;
+}
