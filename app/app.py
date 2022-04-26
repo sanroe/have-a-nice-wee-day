@@ -1,4 +1,5 @@
 from flask import Flask, redirect
+from flask_talisman import Talisman, GOOGLE_CSP_POLICY
 from app.extensions.database import db, migrate
 from app.extensions.authentication import login_manager
 from . import scrollers, basic_pages, users
@@ -7,6 +8,8 @@ import logging
 def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config')
+
+    Talisman(app, content_security_policy=GOOGLE_CSP_POLICY)
 
     register_extensions(app)
     register_blueprints(app)
