@@ -21,6 +21,12 @@ def test_register_content(client):
     response = client.get('/register')
     assert b'<h1 class="text-center">register</h1>' in response.data
 
+def test_register_post(client):
+    # Creates a user record
+    client.post('/register', data=dict(email='testregister@test.test', password='test', password_confirmation='test'))
+    client.get('/logout')
+    assert User.query.filter_by(email='testregister@test.test').first() is not None
+
 def test_manage_redirects_if_not_logged_in(client):
     # Redirects if not logged in
     response = client.get('/manage')
