@@ -70,21 +70,12 @@
             </div>
         {% endif %}
 
+        <script src="{{ url_for('static', filename='js/success.js')}}"></script>
+
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
-
-    <script>
-        document.getElementById('copy-link-button').addEventListener('click', function copyLink() {
-            var copyText = document.getElementById("scroller-link");
-
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-
-            document.execCommand("copy");
-        });
-    </script>
-    
+ 
     </main>
 
 {% endblock %}

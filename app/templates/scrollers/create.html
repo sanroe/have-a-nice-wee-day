@@ -48,21 +48,7 @@
             <input type="submit" value="let's make some magic" />
         </form>
 
-        <script>
-            document.getElementById('make-your-own').addEventListener('click', function showCustomhaikuForm() {
-                document.getElementById("for-custom-haiku").style.display = "block";
-            });
-
-            document.getElementById('pick-ours').addEventListener('click', function hideCustomhaikuForm() {
-                document.getElementById("for-custom-haiku").style.display = "none";
-            });
-
-            const textarea = document.querySelector('textarea')
-            const count = document.getElementById('long-message-count')
-            textarea.onkeyup = (e) => {
-                count.innerHTML = (1000 - e.target.value.length) + "/1000 characters";
-            };
-        </script>
+        <script src="{{ url_for('static', filename='js/create.js')}}"></script>
 
         {% if error %}
             <p class="error">{{ error }}</p>
