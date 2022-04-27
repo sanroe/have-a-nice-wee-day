@@ -267,9 +267,18 @@ def post_edit_scroller(slug):
             scroller.longmessage_id = longmessage.id
             scroller.save()
 
-        logged_in = True
+        has_account = ''
 
-        return redirect(url_for('scrollers.success', slug=slug, logged_in=logged_in))
+        # Check whether logged in
+        if current_user.is_authenticated:
+            logged_in = True
+        else:
+            logged_in = False
+            has_account = False
+
+        site_url = request.url_root
+
+        return render_template('scrollers/success.html', slug=slug, logged_in=logged_in, has_account=has_account, site_url=site_url)
     except Exception as error_message:
         error = error_message or 'an error occurred while trying to update your scroller. maybe start afresh.'
         
