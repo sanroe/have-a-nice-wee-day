@@ -92,7 +92,6 @@ def test_delete_all_account_post(client):
     # Create new user and log in
     with client:
         client.post('/register', data=dict(email='test1000@test.test', password='test', password_confirmation='test'))
-        response = client.get('/manage/delete', follow_redirects=True)
         # Create new scroller while logged in
         client.post('/create', data={'to-recipient-name': 'tony-macaroni',
         'from-sender-name': ':)',
@@ -102,4 +101,20 @@ def test_delete_all_account_post(client):
         response = client.post('/manage/delete', data={'action': 'delete all'})
         assert User.query.filter_by(email='test1000@test.test').first() is None
         assert Scroller.query.filter_by(to_recipient_name='tony-macaroni').first() is None
+
+def test_delete_account_only_post(client):
+    # Deletes all
+    # Create new user and log in
+    with client:
+        client.post('/register', data=dict(email='test1001@test.test', password='test', password_confirmation='test'))
+        # Create new scroller while logged in
+        client.post('/create', data={'to-recipient-name': 'macaroni-tony',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        response = client.post('/manage/delete', data={'action': 'delete account'})
+        assert User.query.filter_by(email='test1001@test.test').first() is None
+        # Check scroller still exists even if user deleted
+        assert Scroller.query.filter_by(to_recipient_name='macaroni-tony').first() is not None
         
