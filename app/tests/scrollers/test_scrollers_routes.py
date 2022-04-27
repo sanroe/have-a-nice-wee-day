@@ -39,17 +39,16 @@ def test_post_create_scroller(client):
 
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
-    # Creat fake user and log in
-    user = User(email='test2@test.test', password='test2')
-    db.session.add(user)
-    db.session.commit()
     with client:
-        client.post('/login', data=dict(email='test2@test.test', password='test2'), follow_redirects=True)
-        # Create new scroller and assign user
-        new_scroller = Scroller(slug='test-for-list', to_recipient_name='lisa', user_id=user.id)
-        new_scroller.save()
-        db.session.add(new_scroller)
-        db.session.commit()
-        # Check saved scroller appears in list
-        response = client.get('/myscrollers')
+        # Create new user and log in
+        client.post('/register', data=dict(email='test999@test.test', password='test', password_confirmation='test'))
+        # Create new scroller while logged in
+        client.post('/create', data={'to-recipient-name': 'lisa',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        # Check scroller in index list
+        response = client.get('/myscrollers', follow_redirects=True)
         assert b'lisa' in response.data
+        # client.get('/logout')
