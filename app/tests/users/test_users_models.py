@@ -14,3 +14,14 @@ def test_user_update(client):
 
     updated_user = User.query.filter_by(id=user_id).first()
     assert updated_user.email == 'test4@test.test'
+
+def test_user_delete(client):
+    # Delete user
+    user = User(email='test_for_del@test.test', password='test')
+    db.session.add(user)
+    db.session.commit()
+
+    user.delete()
+
+    deleted_user = User.query.filter_by(email='test_for_del@test.test').first()
+    assert deleted_user is None
