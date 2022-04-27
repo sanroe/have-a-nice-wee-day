@@ -51,6 +51,21 @@ def test_scroller_creation_success(client):
     # Check correct slug is created and included
     assert b'banana-' in response.data
 
+def test_scroller_creation_login_success(client):
+    # Page returns correct content
+    client.post('/create', data={
+        'to-recipient-name': 'apple',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'
+    }, follow_redirects=True)
+    response = client.get('/success/login')
+    # Check loaded
+    assert response.status_code == 200
+    # Check for login button included
+    assert b'name="submit_button" value="login"' in response.data
+
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
     with client:
