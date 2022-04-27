@@ -6,6 +6,15 @@ def test_login_success(client):
     response = client.get('/login')
     assert response.status_code == 200
 
+def test_login_user_exists_post(client):
+    # Logins in user
+    # Create fake user first
+    user = User(email='test_for_login@test.test', password='test')
+    db.session.add(user)
+    db.session.commit()
+    response = client.post('/login', data=dict(email='test_for_login@test.test', password='test'), follow_redirects=True)
+    assert b'your scrollers' in response.data
+
 def test_login_content(client):
     # Returns login content
     response = client.get('/login')
