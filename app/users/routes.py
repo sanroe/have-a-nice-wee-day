@@ -51,7 +51,7 @@ def post_login():
 
         if not user:
             raise Exception('no user with that email address found.')
-        elif check_password_hash(request.form.get('password'), user.password):
+        elif not check_password_hash(user.password, request.form.get('password')):
             raise Exception('the password is incorrect.')
         
         login_user(user)
