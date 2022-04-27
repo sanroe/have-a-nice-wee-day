@@ -32,23 +32,23 @@
     max-width: 200px;
     background-position: right;
     position: absolute;
-    bottom: 2%;
-    right: 0;
+    bottom: -40vh;
+    right: -100vw;
     animation: walking 10s ease-in-out infinite;
 }
 
 @keyframes walking {
-    0% {background-image: url("../img/secondary-char-1.svg"); right: -20vw; bottom: 2%;}
-    9% {background-image: url("../img/secondary-char-2.svg"); right: 0vw; bottom: 3%;}
-    18% {background-image: url("../img/secondary-char-1.svg"); right: 9vw; bottom: 2%;}
-    27% {background-image: url("../img/secondary-char-2.svg"); right: 20vw; bottom: 2%;}
-    36% {background-image: url("../img/secondary-char-1.svg"); right: 30vw; bottom: 2%;}
-    45% {background-image: url("../img/secondary-char-2.svg"); right: 40vw; bottom: 3%;}
-    54% {background-image: url("../img/secondary-char-1.svg"); right: 50vw; bottom: 2%;}
-    63% {background-image: url("../img/secondary-char-2.svg"); right: 65vw; bottom: 2%;}
-    72% {background-image: url("../img/secondary-char-1.svg"); right: 75vw; bottom: 2%;}
-    81% {background-image: url("../img/secondary-char-2.svg"); right: 85vw; bottom: 3%;}
-    100% {background-image: url("../img/secondary-char-2.svg"); right: 100vw; bottom: 2%;}
+    0% {background-image: url("../img/secondary-char-1.svg"); right: -70vw; bottom: -25vh;}
+    9% {background-image: url("../img/secondary-char-2.svg"); right: -51vw; bottom: -24vh;}
+    18% {background-image: url("../img/secondary-char-1.svg"); right: -42vw; bottom: -25vh;}
+    27% {background-image: url("../img/secondary-char-2.svg"); right: -32vw; bottom: -25vh;}
+    36% {background-image: url("../img/secondary-char-1.svg"); right: -22vw; bottom: -24vh;}
+    45% {background-image: url("../img/secondary-char-2.svg"); right: -12vw; bottom: -25vh;}
+    54% {background-image: url("../img/secondary-char-1.svg"); right: -2vw; bottom: -24vh;}
+    63% {background-image: url("../img/secondary-char-2.svg"); right: 15vw; bottom: -25vh;}
+    72% {background-image: url("../img/secondary-char-1.svg"); right: 25vw; bottom: -25vh;}
+    81% {background-image: url("../img/secondary-char-2.svg"); right: 35vw; bottom: -24vh;}
+    100% {background-image: url("../img/secondary-char-2.svg"); right: 40vw; bottom: -25vh;}
 }
 
 /* FRUIT ANIMATION */
