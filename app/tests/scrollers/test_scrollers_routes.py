@@ -81,3 +81,21 @@ def test_myscrollers_renders_scrollers(client):
         response = client.get('/myscrollers', follow_redirects=True)
         assert b'lisa' in response.data
         # client.get('/logout')
+
+def test_myscroller_delete(client):
+    # Deletes scroller
+    # Create new user and log in
+    with client:
+        client.post('/register', data=dict(email='test555@test.test', password='test', password_confirmation='test'))
+        # Create new scroller while logged in
+        client.post('/create', data={'to-recipient-name': 'cherry-top',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        scroller = Scroller.query.filter_by(to_recipient_name='cherry-top').first()
+        scroller_slug = scroller.slug
+        # Create delete URL to test
+        del_url = '/delete/' + scroller_slug
+        response = client.get(del_url, follow_redirects=True)
+        assert Scroller.query.filter_by(to_recipient_name='cherry-top').first() is None
