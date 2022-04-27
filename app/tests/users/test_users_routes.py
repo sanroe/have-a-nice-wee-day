@@ -14,11 +14,12 @@ def test_login_content(client):
 def test_login_user_exists_post(client):
     # Logins in user
     # Create fake user first
-    user = User(email='test_for_login@test.test', password='test')
-    db.session.add(user)
-    db.session.commit()
-    response = client.post('/login', data=dict(email='test_for_login@test.test', password='test'), follow_redirects=True)
-    assert b'your scrollers' in response.data
+    with client:
+        user = User(email='test_for_login@test.test', password='test')
+        db.session.add(user)
+        db.session.commit()
+        response = client.post('/login', data=dict(email='test_for_login@test.test', password='test'), follow_redirects=True)
+        assert b'your scrollers' in response.data
 
 def  test_login_user_does_not_exist_post(client):
     # Throws error if user does not exist
@@ -63,21 +64,15 @@ def test_manage_unauthorised_loads_if_not_logged_in(client):
 def test_manage_logged_in_success(client):
     # Page loads if logged in
     # Create fake user
-    user = User(email='test@test.test', password='test')
-    db.session.add(user)
-    db.session.commit()
     with client:
-        client.post('/login', data=dict(email='test@test.test', password='test'), follow_redirects=True)
-        response = client.get('/manage')
+        client.post('/register', data=dict(email='test999@test.test', password='test', password_confirmation='test'))
+        response = client.get('/manage', follow_redirects=True)
         assert response.status_code == 200
 
 def test_manage_logged_in_content(client):
     # Returns if logged in
-    # Create fake user and log in
-    user = User(email='testing@test.test', password='testing')
-    db.session.add(user)
-    db.session.commit()
+    # Create new user and log in
     with client:
-        client.post('/login', data=dict(email='testing@test.test', password='testing'), follow_redirects=True)
-        response = client.get('/manage')
+        client.post('/register', data=dict(email='test999@test.test', password='test', password_confirmation='test'))
+        response = client.get('/manage', follow_redirects=True)
         assert 'update email' in response.get_data(as_text=True)
