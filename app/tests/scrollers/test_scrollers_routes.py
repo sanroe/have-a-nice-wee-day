@@ -99,3 +99,21 @@ def test_myscroller_delete(client):
         del_url = '/delete/' + scroller_slug
         response = client.get(del_url, follow_redirects=True)
         assert Scroller.query.filter_by(to_recipient_name='cherry-top').first() is None
+
+def test_scroller_edit_get(client):
+    # Page returns correct content
+    with client:
+        # Create new scroller
+        client.post('/create', data={'to-recipient-name': 'blueberry-muffin',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        scroller = Scroller.query.filter_by(to_recipient_name='blueberry-muffin').first()
+        scroller_slug = scroller.slug
+        # Create edit URL
+        edit_url = '/edit/' + scroller_slug
+        response = client.get(edit_url)
+        assert response.status_code == 200
+        assert b'note that you will not be able to create a new URL' in response.data
+
