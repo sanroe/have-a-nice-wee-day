@@ -117,3 +117,24 @@ def test_scroller_edit_get(client):
         assert response.status_code == 200
         assert b'note that you will not be able to create a new URL' in response.data
 
+def test_scroller_edit_post(client):
+    # Page returns correct content
+    with client:
+        # Create new scroller
+        client.post('/create', data={'to-recipient-name': 'chocolate-muffin',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        scroller = Scroller.query.filter_by(to_recipient_name='chocolate-muffin').first()
+        scroller_slug = scroller.slug
+        # Create edit URL
+        edit_url = '/edit/' + scroller_slug
+        response = client.post(edit_url, data={'to-recipient-name': 'carrot-muffin',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        updated_scroller = Scroller.query.filter_by(slug=scroller_slug).first()
+        assert updated_scroller.to_recipient_name == 'carrot-muffin'
+
