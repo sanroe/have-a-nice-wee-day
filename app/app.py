@@ -53,7 +53,7 @@ logger.setLevel(logging.DEBUG)
 
 # Output to file settings
 logfile = logging.FileHandler('file.log')
-logfile.setLevel(logging.INFO)
+logfile.setLevel(logging.WARNING)
 logfileformat = logging.Formatter('%(asctime)s - %(name)s - [%(filename)s > %(funcName)s() > %(lineno)s] - %(levelname)s - %(message)s')
 logfile.setFormatter(logfileformat)
 
