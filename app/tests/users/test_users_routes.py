@@ -1,5 +1,6 @@
 from app.extensions.database import db
 from app.users.models import User
+from app.scrollers.models import Scroller
 
 def test_login_success(client):
     # Page loads
@@ -85,3 +86,20 @@ def test_delete_logged_in_success(client):
         response = client.get('/manage/delete', follow_redirects=True)
         assert response.status_code == 200
         assert 'delete your account' in response.get_data(as_text=True)
+
+def test_delete_all_account_post(client):
+    # Deletes all
+    # Create new user and log in
+    with client:
+        client.post('/register', data=dict(email='test1000@test.test', password='test', password_confirmation='test'))
+        response = client.get('/manage/delete', follow_redirects=True)
+        # Create new scroller while logged in
+        client.post('/create', data={'to-recipient-name': 'tony-macaroni',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'})
+        response = client.post('/manage/delete', data={'action': 'delete all'})
+        assert User.query.filter_by(email='test1000@test.test').first() is None
+        assert Scroller.query.filter_by(to_recipient_name='tony-macaroni').first() is None
+        
