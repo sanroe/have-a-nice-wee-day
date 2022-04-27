@@ -1,5 +1,7 @@
 from app.extensions.database import db
-from app.scrollers.models import Scroller
+from app.scrollers.models import Scroller, Customhaiku, Longmessage
+
+# Tests for updating and deleting editable models (default haiku and mood are not editable)
 
 def test_scroller_update(client):
     # Updates scroller's properties
@@ -23,3 +25,30 @@ def test_scroller_delete(client):
 
     deleted_scroller = Scroller.query.filter_by(slug='test_for_del').first()
     assert deleted_scroller is None
+
+def test_customhaiku_update(client):
+    # Updates custom haiku properties
+    customhaiku = Customhaiku(line_one='test', line_two='testing', line_three='tested')
+    db.session.add(customhaiku)
+    db.session.commit()
+
+    customhaiku_id = customhaiku.id
+
+    customhaiku.line_one = 'different'
+    customhaiku.save()
+
+    updated_customhaiku = Customhaiku.query.filter_by(id=customhaiku_id).first()
+    assert updated_customhaiku.line_one == 'different'
+
+def test_customhaiku_delete(client):
+    # Deletes custom haiku
+    customhaiku = Customhaiku(line_one='test', line_two='testing', line_three='tested')
+    db.session.add(customhaiku)
+    db.session.commit()
+
+    customhaiku_id = customhaiku.id
+
+    customhaiku.delete()
+
+    deleted_customhaiku = Customhaiku.query.filter_by(id=customhaiku_id).first()
+    assert deleted_customhaiku is None
