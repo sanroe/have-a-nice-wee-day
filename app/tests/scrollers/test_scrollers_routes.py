@@ -29,13 +29,13 @@ def test_get_create_content(client):
 def test_post_create_scroller(client):
     # Creates a scroller record
     response = client.post('/create', data={
-        'to-recipient-name': 'diana',
+        'to-recipient-name': 'diana-diana',
         'from-sender-name': ':)',
         'default-message': 'True',
         'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         'mood': 'spring'
     })
-    assert Scroller.query.first() is not None
+    assert Scroller.query.filter_by(to_recipient_name='diana-diana').first() is not None
 
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
