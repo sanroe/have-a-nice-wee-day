@@ -25,6 +25,15 @@ def  test_login_user_does_not_exist_post(client):
     response = client.post('/login', data=dict(email='xyz@test.test', password='test'), follow_redirects=True)
     assert b'no user with that email address found' in response.data
 
+def test_login_user_exists_wrong_password_post(client):
+    # Throws error if user exists but password is wrong
+    # Create fake user first
+    user = User(email='test7@test.test', password='test')
+    db.session.add(user)
+    db.session.commit()
+    response = client.post('/login', data=dict(email='test7@test.test', password='wrong'), follow_redirects=True)
+    assert b'password is incorrect' in response.data
+
 def test_register_success(client):
     # Page loads
     response = client.get('/register')
