@@ -6,6 +6,11 @@ def test_login_success(client):
     response = client.get('/login')
     assert response.status_code == 200
 
+def test_login_content(client):
+    # Returns login content
+    response = client.get('/login')
+    assert b'<h1 class="text-center">login</h1>' in response.data
+
 def test_login_user_exists_post(client):
     # Logins in user
     # Create fake user first
@@ -15,10 +20,10 @@ def test_login_user_exists_post(client):
     response = client.post('/login', data=dict(email='test_for_login@test.test', password='test'), follow_redirects=True)
     assert b'your scrollers' in response.data
 
-def test_login_content(client):
-    # Returns login content
-    response = client.get('/login')
-    assert b'<h1 class="text-center">login</h1>' in response.data
+def  test_login_user_does_not_exist_post(client):
+    # Throws error if user does not exist
+    response = client.post('/login', data=dict(email='xyz@test.test', password='test'), follow_redirects=True)
+    assert b'no user with that email address found' in response.data
 
 def test_register_success(client):
     # Page loads
