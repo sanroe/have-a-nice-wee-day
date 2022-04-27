@@ -76,3 +76,12 @@ def test_manage_logged_in_content(client):
         client.post('/register', data=dict(email='test999@test.test', password='test', password_confirmation='test'))
         response = client.get('/manage', follow_redirects=True)
         assert 'update email' in response.get_data(as_text=True)
+
+def test_delete_logged_in_success(client):
+    # Page loads and returns if logged in
+    # Create new user and log in
+    with client:
+        client.post('/register', data=dict(email='test999@test.test', password='test', password_confirmation='test'))
+        response = client.get('/manage/delete', follow_redirects=True)
+        assert response.status_code == 200
+        assert 'delete your account' in response.get_data(as_text=True)
