@@ -155,8 +155,33 @@
     z-index: 3;
 }
 
+#drop-1 {
+    animation: dropping 18s ease-in-out infinite;
+}
+
+#drop-2 {
+    animation: dropping 19s ease-in-out infinite;
+}
+
+#drop-3 {
+    animation: dropping 20s ease-in-out infinite;
+}
+
+#drop-4 {
+    animation: dropping 21s ease-in-out infinite;
+}
+
 #juice-drops path {
     fill: var(--juice);
+}
+
+@keyframes dropping {
+    0% { visibility: visible; opacity: 0.1; }
+    20% { opacity: 1.0; }
+    37% { opacity: 1.0; }
+    42% { opacity: 0.5; }
+    45% { opacity: 0; }
+    100% { opacity: 0; }
 }
 
 /* SEASONAL */
