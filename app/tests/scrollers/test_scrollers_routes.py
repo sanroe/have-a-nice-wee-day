@@ -37,6 +37,20 @@ def test_post_create_scroller(client):
     })
     assert Scroller.query.filter_by(to_recipient_name='diana-diana').first() is not None
 
+def test_scroller_creation_success(client):
+    # Page returns correct content
+    response = client.post('/create', data={
+        'to-recipient-name': 'banana',
+        'from-sender-name': ':)',
+        'default-message': 'True',
+        'long-message': 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'mood': 'spring'
+    }, follow_redirects=True)
+    # Check success page loaded
+    assert b'success!' in response.data
+    # Check correct slug is created and included
+    assert b'banana-' in response.data
+
 def test_myscrollers_renders_scrollers(client):
     # Page loads and renders scrollers
     with client:
