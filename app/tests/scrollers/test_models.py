@@ -52,3 +52,30 @@ def test_customhaiku_delete(client):
 
     deleted_customhaiku = Customhaiku.query.filter_by(id=customhaiku_id).first()
     assert deleted_customhaiku is None
+
+def test_longmessage_update(client):
+    # Updates long message properties
+    longmessage = Longmessage(msg='lorem ipsum')
+    db.session.add(longmessage)
+    db.session.commit()
+
+    longmessage_id = longmessage.id
+
+    longmessage.msg = 'dolor sit amet'
+    longmessage.save()
+
+    updated_longmessage = Longmessage.query.filter_by(id=longmessage_id).first()
+    assert updated_longmessage.msg == 'dolor sit amet'
+
+def test_longmessage_delete(client):
+    # Deletes long message
+    longmessage = Longmessage(msg='lorem ipsum')
+    db.session.add(longmessage)
+    db.session.commit()
+
+    longmessage_id = longmessage.id
+
+    longmessage.delete()
+
+    deleted_longmessage = Longmessage.query.filter_by(id=longmessage_id).first()
+    assert deleted_longmessage is None
