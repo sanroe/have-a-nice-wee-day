@@ -168,38 +168,25 @@ input[type=submit]:hover {
 }
 
 .login-form, .register-form, .update-details-form {
-    width: 60%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 600px;
     margin: auto;
-    align-items: flex-start;
 }
 
 .login-form div, .register-form div, .update-details-form div {
     width: 100%;
     margin-bottom: 1rem;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
 }
 
-.login-form div input, .register-form div input {
-    min-width: 250px;
-    width: 80%;
-}
-
-.update-details-form div input {
-    min-width: 200px;
-    width: 70%;
-}
-
-.login-form label, .register-form label, .update-details-form label {
-    padding-right: 0.5rem;
-    align-self: center;
+.login-form div input, .register-form div input, .update-details-form input {
+    width: 100%;
 }
 
 .login-form input[type=submit], .register-form input[type=submit], .update-details-form input[type=submit] {
-    min-width: 120px;
-    width: 50%;
-    max-width: 300px;
+    width: 150px;
     margin: auto;
 }
 
@@ -444,7 +431,29 @@ input[type=submit]:hover {
     .homepage {
         background-position: 20% 20vh;
     }
+    
+    .login-form div, .register-form div, .update-details-form div {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: right;
+    }
+    
+    .login-form div input, .register-form div input, .update-details-form input {
+        max-width: 350px;
+    }
 
+    .login-form label, .register-form label, .update-details-form label {
+        padding-right: 0.5rem;
+    }
+
+}
+
+@media (min-width: 800px) {
+    .login-form div input, .register-form div input, .update-details-form input {
+        max-width: 450px;
+    }
 }
 
 /* laptop */
@@ -461,6 +470,7 @@ input[type=submit]:hover {
     #delete-account-form input[type=submit] {
         margin-right: 20%;
     }
+
 }
 
 /* desktop */
