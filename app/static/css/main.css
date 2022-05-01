@@ -164,6 +164,7 @@ input[type=submit]:hover {
     padding-top: 1rem;
     color: tomato;
     text-align: center;
+    margin: auto;
 }
 
 .login-form, .register-form, .update-details-form {
