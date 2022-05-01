@@ -467,9 +467,6 @@ input[type=submit]:hover {
         max-width: 450px;
     }
 
-    .landing h1 {
-        font-size: 4.209rem; /* reset to normal */
-    }
 }
 
 /* laptop */
@@ -527,7 +524,7 @@ input[type=submit]:hover {
     }
 }
 
-@media (min-height: 600px) {
+@media (min-height: 600px) and (min-width: 800px) {
     .landing h1 {
         font-size: 4.209rem; /* reset to normal */
     }
