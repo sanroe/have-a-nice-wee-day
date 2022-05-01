@@ -8,11 +8,10 @@
 
 html {
     overflow-x: hidden;
-    font-size: 100%; 
+    font-size: 100%;
 }
 
 body {
-    width: 100vw;
     max-width: 1040px; /* Material Design */
     margin: 0 auto;
     padding-left: 16px; /* mobile-first Material Design */
@@ -254,12 +253,19 @@ footer button:hover {
 
 /* BREAKPOINTS */
 
+/* mobile */
+@media (max-width: 599px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
 /* tablet */
 @media (min-width: 600px) {
     body {
         padding-left: 32px; /* Material Design */
         padding-right: 32px; /* Material Design */
-    }
+     }
 
     .edit-header h1 {
         padding-right: 32px;
