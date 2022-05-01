@@ -12,6 +12,7 @@ html {
 }
 
 body {
+    width: 100vw;
     max-width: 1040px; /* Material Design */
     margin: 0 auto;
     padding-left: 16px; /* mobile-first Material Design */
@@ -28,8 +29,6 @@ body {
 }
 
 main {
-    scroll-snap-type: y proximity;
-    scroll-padding-top: 15vh;
     width: 100%;
     text-align: center;
 }
@@ -129,6 +128,7 @@ footer span {
 footer button {
     background-color: #775d68;
     font-family: inherit;
+    font-size: inherit;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -148,7 +148,6 @@ footer button:hover {
 
 .frame {
     min-height: 100vh;
-    scroll-snap-align: start;
 }
 
 .mid-frame {

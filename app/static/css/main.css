@@ -187,7 +187,7 @@ input[type=submit]:hover {
 }
 
 .login-form input[type=submit], .register-form input[type=submit], .update-details-form input[type=submit] {
-    width: 150px;
+    width: 200px;
     margin: auto;
 }
 
@@ -286,6 +286,10 @@ input[type=submit]:hover {
     margin-top: 10%;
 }
 
+.landing h1 {
+    font-size: 3.157rem; /* mobile first */
+}
+
 #someone-text {
     margin-left: 1rem;
 }
@@ -347,6 +351,7 @@ input[type=submit]:hover {
 .success button {
     background-color: #775d68;
     font-family: inherit;
+    font-size: inherit;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -367,7 +372,7 @@ input[type=submit]:hover {
 }
 
 .success input[type=submit] {
-    min-width: 150px;
+    min-width: 200px;
 }
 
 .success-register, .success-login {
@@ -460,6 +465,10 @@ input[type=submit]:hover {
 @media (min-width: 800px) {
     .login-form div input, .register-form div input, .update-details-form input {
         max-width: 450px;
+    }
+
+    .landing h1 {
+        font-size: 4.209rem; /* reset to normal */
     }
 }
 
