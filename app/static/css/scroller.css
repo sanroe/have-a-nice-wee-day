@@ -90,18 +90,19 @@ a:hover {
     margin: 0;
     position: fixed;
     left: 0%;
+    top: 0;
     z-index: 2;
-    height: 50px;
-    line-height: 50px;
     width: 100%;
     background-color: #EDB9D080;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .edit-header h1 {
-    text-align: right;
     font-size: 1.333rem; /* size down to h5 but keep as h1 for correct hiearchy */
     margin: 0;
-    padding-right: max(1rem, 10%);
+    padding-right: 16px; /* mobile-first Material Design */
 }
 
 /* FOOTER */ 
@@ -113,13 +114,13 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
     padding-left: 16px; /* mobile-first Material Design */
     padding-right: 16px; /* mobile-first Material Design */
 }
 
 footer span {
-    padding-left: 1rem;
+    padding-left: 16px;
 }
 
 footer button {
@@ -240,6 +241,9 @@ footer button:hover {
         padding-right: 32px; /* Material Design */
     }
 
+    .edit-header h1 {
+        padding-right: 32px;
+    }
 }
 
 /* laptop */
@@ -249,9 +253,14 @@ footer button:hover {
         padding-right: 200px; /* Material Design */
     }
 
+    .edit-header h1 {
+        padding-right: 200px;
+    }
 }
 
 /* desktop */
 @media (min-width: 1440px) {
-
+    .edit-header h1 {
+        padding-right: calc((100vw - 1040px) / 2); /* difference between max-width and current viewport width, divided by 2 for the right-hand side */
+    }
 }
