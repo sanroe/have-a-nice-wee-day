@@ -9,7 +9,7 @@
 {% block body %}
     <main class="success">
         <h1>success!</h1>
-        <p aria-labelledby="view-and-edit-link teapot">view and edit your scroller</p>
+        <h5 aria-labelledby="view-and-edit-link teapot">view and edit your scroller</h5>
         <a href="/view/{{ slug }}" id="view-and-edit-link">
             <div id="teapot">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.78 10.33" aria-labelledby="teapot-icon-title">
@@ -18,14 +18,13 @@
                 </svg>
             </div>
         </a>
-        <br />
-        <p>or go ahead and share</p>
+        <h5>or go ahead and share</h5>
         <input type="text" id="scroller-link"  value="{{ site_url }}{{ slug }}" readonly />
         <button id="copy-link-button">copy link</button>
-        <br />
-        <br />
+        <br /><br />
     
         {% if not logged_in and not has_account %}
+            <div class="flex-center">
             <p>to save your scrollers in one place, and manage them, create an account</p>
             <div class="success-register">
                 <form method="POST" class="register-form">
@@ -48,7 +47,7 @@
                 </form>
             </div>
             <p>already have an account? <a href="/success/login" class="link-underline">click here to log in</a></p>
-        
+            </div>
         {% endif %}
 
         {% if has_account %}
