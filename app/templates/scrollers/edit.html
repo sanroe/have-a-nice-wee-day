@@ -8,43 +8,48 @@
 
 {% block body %}
     <main class="create">
-        <h1 class="text-center">edit</h1>
-        <p class="text-center">note that you will not be able to create a new URL. to do that, <a href="/create" class="link-underline">create a new scroller</a>
+        <div class="edit-heading">
+            <h1>edit</h1>
+            <p>note that you will not be able to create a new URL.<br>to do that, <a href="/create" class="link-underline">create a new scroller</a>
+        </div>
         <form method="POST" id="create-new">
             <div class="center">
-                <label for="to-recipient-name">whose day are we making?</label><br />
+                <h5><label for="to-recipient-name">whose day are we making?</label></h5>
                 <input type="text" id="to-recipient-name" name="to-recipient-name" placeholder="a special someone (their first name or nickname)" size="60" maxlength="80" style="text-transform:lowercase" value="{{ scroller.to_recipient_name }}" />
             </div>
             <div>
-                <p class="text-center">what mood are we feeling?</p>
+                <h5 class="text-center">what mood are we feeling?</h5>
                 <input type="radio" id="spring" name="mood" value="1" {% if mood.id == 1 %} checked="checked" {% endif%} />
                 <label for="spring">spring has sprung &ndash; warm and light</label><br />
                 <input type="radio" id="autumn" name="mood" value="2" {% if mood.id == 2 %} checked="checked" {% endif%} />
                 <label for="autumn">seasons change &ndash; autumnal and beige</label><br />
             </div>
             <div>
-                <p class="text-center">the message</p>
-                <p class="text-center">pick one of ours or make your own?</p>
+                <h4 class="text-center">the message</h4>
+                <h5 class="text-center" id="pick-one-or-make">pick one of ours or make your own?</h5>
                 <input type="radio" id="pick-ours" name="default-message" value="True" {% if default_haiku %} checked="checked" {% endif%}/>
                 <label for="pick-ours">let's see what you've got. surprise me!</label><br />
                 <input type="radio" id="make-your-own" name="default-message" value="False" {% if not default_haiku %} checked="checked" {% endif%} />
-                <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label><br /><br />         
+                <label for="make-your-own">i'm feeling creative, let me write a quick haiku</label>         
             </div>
             <div class="center" id="for-custom-haiku-edit" >
-                <label for="line-one">first line</label><br />
-                <input type="text" id="line-one" name="line-one" placeholder="(5 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_one }}" /><br />
-                <label for="line-two">second line</label><br />
-                <input type="text" id="line-two" name="line-two" placeholder="(7 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_two }}" /><br />
-                <label for="line-three">third line</label><br />
-                <input type="text" id="line-three" name="line-three" placeholder="(5 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_three }}" /><br /><br />
+                <label for="line-one">first line</label>
+                <input type="text" id="line-one" name="line-one" placeholder="(5 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_one }}" /><br>
+                <label for="line-two">second line</label>
+                <input type="text" id="line-two" name="line-two" placeholder="(7 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_two }}" /><br>
+                <label for="line-three">third line</label>
+                <input type="text" id="line-three" name="line-three" placeholder="(5 syllables for a haiku)" size="60" maxlength="255" style="text-transform:lowercase" value="{{ haiku.line_three }}" />
             </div>
             <div class="center">
-                <label for="long-message">anything else you'd like to say? (optional)</label><br />
-                <textarea id="long-message" name="long-message" rows="4" cols="60" maxlength="1000" >{{ msg.msg }}</textarea><br />
+                <label for="long-message" class="margin-top-higher">anything else you'd like to say? (optional)</label>
+                <textarea id="long-message" name="long-message" rows="4" cols="60" maxlength="1000" >{{ msg.msg }}</textarea>
             </div>
             <div class="center">
-                <label for="from-sender-name">and last but not least, who shall we say it's from?</label><br />
-                <input type="text" id="from-sender-name" name="from-sender-name" placeholder="add some kisses if you want to" size="60" maxlength="80" style="text-transform:lowercase" value="{{ scroller.from_sender_name }}" /><br /><br />         
+                <h5 class="text-center">
+                <label for="from-sender-name">and last but not least,<br>
+                    who shall we say it's from?</label>
+                </h5>
+                <input type="text" id="from-sender-name" name="from-sender-name" placeholder="add some kisses if you want to" size="60" maxlength="80" style="text-transform:lowercase" value="{{ scroller.from_sender_name }}" />         
             </div>
             <input type="submit" value="update scroller" />
         </form>

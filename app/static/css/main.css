@@ -139,6 +139,7 @@ textarea {
     font-size: inherit;
     padding: 0.5rem;
     margin-top: 0.5rem;
+    width: calc(100% - 16px * 2);
 }
 
 input[type=submit] {
@@ -298,6 +299,10 @@ input[type=submit]:hover {
     margin: auto;
 }
 
+.create input[type=text] {
+    width: calc(100% - 16px / 2);
+}
+
 .create div {
     margin-top: 1rem;
 }
@@ -357,17 +362,12 @@ input[type=submit]:hover {
 
 /* EDIT PAGE ADJUSTMENTS */
 
-.edit-header {
-    margin: 0;
-    position: fixed;
-    z-index: 2;
-    height: 50px;
-    width: 20%;
-    background-color: #EDB9D080;
-}
-
-.edit-header h3 {
-    text-align: right;
+.edit-heading {
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* REGISTER PAGE ADJUSTMENTS */
@@ -419,9 +419,6 @@ input[type=submit]:hover {
         padding-right: 32px; /* Material Design */
     }
 
-    .create {
-        width: 100%; /* mobile-first */
-    }
 }
 
 /* laptop */
