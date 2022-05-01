@@ -11,9 +11,10 @@ html {
 }
 
 body {
-    max-width: 1280px;
+    max-width: 1040px; /* Material Design */
     margin: 0 auto;
-    padding: 0 20px;
+    padding-left: 16px; /* mobile-first Material Design */
+    padding-right: 16px; /* mobile-first Material Design */
 
     background-color: #EDB9D080;
     font-family: 'BasierCircle', 'Epilogue', Helvetica, Arial, sans-serif;
@@ -23,8 +24,6 @@ body {
 
 main {
     padding-top: 2rem;
-    padding-left: 1rem;
-    padding-right: 2rem;
 }
 
 /* TYPE SCALE SETTINGS – PERFECT FOURTH */
@@ -69,13 +68,13 @@ h5 {
     max-height: 100vh;
 }
 
+/* HEADER */
+
 header {
     display: flex;
     justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
     font-size: 0.9rem;
-    padding-top: 0.6rem;
+    padding-top: 1rem;
 }
 
 .header-right {
@@ -86,6 +85,8 @@ header {
 .header-right a {
     padding-left: 1rem;
 }
+
+/* ANCHORS */
 
 a {
     text-decoration: none;
@@ -357,4 +358,27 @@ footer span {
 
 #delete-account-form input[type=submit] {
     min-width: 150px; 
+}
+
+/* BREAKPOINTS */
+
+/* tablet */
+@media (min-width: 600px) {
+    body {
+        padding-left: 32px; /* Material Design */
+        padding-right: 32px; /* Material Design */
+    }
+}
+
+/* laptop */
+@media (min-width: 1240px) {
+    body {
+        padding-left: 200px; /* Material Design */
+        padding-right: 200px; /* Material Design */
+    }
+}
+
+/* desktop */
+@media (min-width: 1440px) {
+
 }
