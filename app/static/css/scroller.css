@@ -248,6 +248,10 @@ footer button:hover {
 
 /* laptop */
 @media (min-width: 1240px) {
+    :root {
+        font-size: 18px; /* increase root font size for larger screens */
+    }
+    
     body {
         padding-left: 200px; /* Material Design */
         padding-right: 200px; /* Material Design */
@@ -260,7 +264,12 @@ footer button:hover {
 
 /* desktop */
 @media (min-width: 1440px) {
+    :root {
+        font-size: 22px; /* increase root font size for larger screens */
+    }
+
     .edit-header h1 {
         padding-right: calc((100vw - 1040px) / 2); /* difference between max-width and current viewport width, divided by 2 for the right-hand side */
     }
+
 }
