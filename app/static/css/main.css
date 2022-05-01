@@ -112,14 +112,13 @@ footer {
 
 input {
     font-family: inherit;
+    font-size: inherit;
 }
 
 input[type=text], input[type=email], input[type=password] {
-    /* width: 90vw;
-    max-width: 450px; */
     padding: 0.5rem;
-    margin: 0.2rem;
     box-sizing: border-box;
+    text-align: center;
 }
 
 form {
@@ -137,7 +136,9 @@ form div.center {
 textarea {
     resize: none;
     font-family: inherit;
+    font-size: inherit;
     padding: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 input[type=submit] {
@@ -150,6 +151,8 @@ input[type=submit] {
     display: inline-block;
     border-radius: 15px;
     transition: all 200ms ease-in;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 input[type=submit]:hover {
@@ -194,14 +197,14 @@ input[type=submit]:hover {
 
 .login-form input[type=submit], .register-form input[type=submit], .update-details-form input[type=submit] {
     min-width: 120px;
-    width: 40%;
+    width: 50%;
     max-width: 300px;
     margin: auto;
 }
 
 #long-message-count {
     color: gray;
-    margin-top: -1rem;
+    margin-top: -1.5rem;
     font-size: 0.75rem;
     width: 100%;
     text-align: right;
@@ -237,6 +240,10 @@ input[type=submit]:hover {
     overflow: hidden;
 }
 
+.margin-top-higher {
+    margin-top: 2rem;
+}
+
 /* LANDING PAGE STYLES */
 
 .landing-body {
@@ -249,15 +256,16 @@ input[type=submit]:hover {
 }
 
 #lets-go {
-    margin-left: 3rem;
-    height: 2rem;
+    margin-left: 4rem;
+    margin-top: 3rem;
+    height: 3rem;
     background-image: url('../img/hand-arrow.svg');
     background-repeat: no-repeat;
     transition: background-image 100ms ease-in-out;
 }
 
 #lets-go:hover {
-    height: 2.72rem;
+    height: 3.72rem;
     background-image: url('../img/hand-arrow-bird.svg');
     background-repeat: no-repeat;
 }
@@ -285,13 +293,32 @@ input[type=submit]:hover {
 
 /* CREATE PAGE ADJUSTMENTS */
 
-#for-custom-haiku {
-    display: none;
-    text-align: center;
+.create {
+    width: 100%; /* mobile-first */
+    margin: auto;
 }
 
 .create div {
     margin-top: 1rem;
+}
+
+.create h5 {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.create h4 {
+    margin-bottom: 0;
+    margin-top: 2rem;
+}
+
+#pick-one-or-make {
+    margin-top: 1rem;
+}
+
+#for-custom-haiku {
+    display: none;
+    text-align: center;
 }
 
 /* SUCCESS PAGE ADJUSTMENTS */
@@ -391,6 +418,10 @@ input[type=submit]:hover {
         padding-left: 32px; /* Material Design */
         padding-right: 32px; /* Material Design */
     }
+
+    .create {
+        width: 100%; /* mobile-first */
+    }
 }
 
 /* laptop */
@@ -399,9 +430,15 @@ input[type=submit]:hover {
         padding-left: 200px; /* Material Design */
         padding-right: 200px; /* Material Design */
     }
+
+    .create {
+        width: 50%;
+    }
 }
 
 /* desktop */
 @media (min-width: 1440px) {
-
+    .create {
+        width: 50%;
+    }
 }
