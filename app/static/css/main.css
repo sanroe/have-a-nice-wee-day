@@ -374,6 +374,10 @@ input[type=submit]:hover {
     width: 100%;
 }
 
+.success-register {
+    margin-bottom: 2rem;
+}
+
 /* EDIT PAGE ADJUSTMENTS */
 
 .edit-heading {
@@ -391,10 +395,6 @@ input[type=submit]:hover {
     text-align: center;
     width: 60%;
     margin: 2rem auto;
-}
-
-.success-register {
-    margin-bottom: 2rem;
 }
 
 /* LEGAL PAGE ADJUSTMENTS */
