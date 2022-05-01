@@ -141,19 +141,20 @@ textarea {
 }
 
 input[type=submit] {
-    background-color: pink;
+    background-color: #775d68;
     font-family: inherit;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     text-decoration: none;
     display: inline-block;
-    border-radius: 10px;
+    border-radius: 15px;
     transition: all 200ms ease-in;
 }
 
 input[type=submit]:hover {
-    background-color: darkmagenta;
+    background-color: white;
+    color: #775d68;
 }
 
 .error {
@@ -201,7 +202,7 @@ input[type=submit]:hover {
 #long-message-count {
     color: gray;
     margin-top: -1rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     width: 100%;
     text-align: right;
 }
@@ -308,7 +309,7 @@ input[type=submit]:hover {
 }
 
 .success button {
-    background-color: pink;
+    background-color: #775d68;
     font-family: inherit;
     color: white;
     border: none;
@@ -319,7 +320,7 @@ input[type=submit]:hover {
 }
 
 .success button:hover {
-    background-color: darkmagenta;
+    background-color: #8e6f7d;
 }
 
 .success input[type=text] {
