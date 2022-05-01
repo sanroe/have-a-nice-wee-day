@@ -7,19 +7,19 @@
         <h1>your account</h1>
         <h2>delete</h2>
         <form method="POST" id="delete-account-form">
-            <div>
+            <div class="flex-between">
                 <p>to delete your account and all your scrollers, use this button:</p>
                 <input type="submit" name="action" value="delete all" id="delete-all" />
             </div>
-            <br>
-            <div>
+            <div class="flex-between">
                 <p>to delete your account but leave your scrollers, use this button:</p>
                 <input type="submit" name="action" value="delete account" id="delete-account" />
-                <p>(note: you will not be able to delete or edit your scrollers later)</p>
             </div>
+            <p>(note: you will not be able to delete or edit your scrollers later)</p>
         </form>
-        
-        <p class="text-right"><a href="/manage">back to manage account</a></p>
+        <div class="flex-right">
+            <p class="text-right"><a href="/manage">back to manage account</a></p>
+        </div>
     </main>
     <script>
         document.getElementById('delete-all').addEventListener('click', function confirmDeleteAll() {

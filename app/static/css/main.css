@@ -118,7 +118,6 @@ input {
 input[type=text], input[type=email], input[type=password] {
     padding: 0.5rem;
     box-sizing: border-box;
-    text-align: center;
 }
 
 form {
@@ -245,6 +244,17 @@ input[type=submit]:hover {
     margin-top: 2rem;
 }
 
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* LANDING PAGE STYLES */
 
 .landing-body {
@@ -301,6 +311,7 @@ input[type=submit]:hover {
 
 .create input[type=text] {
     width: calc(100% - 16px / 2);
+    text-align: center;
 }
 
 .create div {
@@ -396,7 +407,7 @@ input[type=submit]:hover {
 /* DELETE ACCOUNT PAGE ADJUSTMENTS */
 
 #delete-account-form {
-    display: inline-flex;
+    display: block;
 }
 
 #delete-account-form div {
@@ -405,7 +416,9 @@ input[type=submit]:hover {
 }
 
 #delete-account-form input[type=submit] {
-    min-width: 150px; 
+    min-width: 150px;
+    padding: 10px 2px;
+    margin-left: 1rem;
 }
 
 /* ----------- */
@@ -430,6 +443,10 @@ input[type=submit]:hover {
 
     .create {
         width: 50%;
+    }
+
+    #delete-account-form input[type=submit] {
+        margin-right: 20%;
     }
 }
 
