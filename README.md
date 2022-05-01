@@ -6,7 +6,7 @@ a web application that allows users to generate a dynamic single-page 'uplifting
 
 * simple user interface and experience
 * different options to customise the look and feel of the scroller
-* optional account creation to save and edit scrollers (a fake email address can be used)
+* optional account creation to save, edit, and delete scrollers (a fake email address can be used)
 * receivers can view by direct URL
 * cute
 
@@ -46,7 +46,7 @@ $ python run.py
 $ gunicorn run:app
 ```
 
-navigate to the local host address in your preferred browser. this will be displayed in the command line (eg, http://127.0.0.1:5000/ or http://127.0.0.1:8000/).
+navigate to the local host address in your preferred browser. this will be displayed in the logs in the command line (eg, http://127.0.0.1:5000/ or http://127.0.0.1:8000/).
 
 ## roadmap
 
