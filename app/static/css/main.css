@@ -30,6 +30,7 @@ main {
 
 p {
     margin-bottom: 1rem;
+    max-width: 60ch;
 }
 
 h1, h2, h3, h4, h5 {
@@ -327,7 +328,7 @@ input[type=submit]:hover {
     text-align: right;
 }
 
-footer span {
+.footer_legal {
     padding-left: 1rem;
 }
 
