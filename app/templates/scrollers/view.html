@@ -19,7 +19,7 @@
 {% if edit_allowed %}
   <header>
     <div class="edit-header">
-      <h2><a href="/edit/{{ scroller.slug }}">edit</a></h2>
+      <h1><a href="/edit/{{ scroller.slug }}">edit</a></h1>
     </div>
   </header>
 {% endif %}
@@ -30,7 +30,7 @@
     <section class="frame" id="one-intro">
         <div class="main-char"></div>
         <div>
-            <h3>{{ scroller.to_recipient_name }}...</h3>
+            <h2 class="text_right">{{ scroller.to_recipient_name }}...</h2>
             <div class="intro-text">
                 <p class="reveal">this</p>
                 <p class="reveal">one's</p>
@@ -109,7 +109,7 @@
             </div>
         </div>
     </section>
-    <section class="frame" id="four-line-one">
+    <section class="frame text_center" id="four-line-one">
         <div class="full-width">
             <div class="blob">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 977.45 875.29">
@@ -281,20 +281,20 @@
             </div>
         </div>
         {% if msg %}
-        <div class="reveal" id="longer-message">
+        <div class="reveal text_left" id="longer-message">
             {% for each in msg %}
                 <p>{{ each }}</p>
             {% endfor %}
         </div>
         {% endif %}
-        <h3 class="reveal" id="from-text">{{ scroller.from_sender_name }}</h3>
+        <h2 class="reveal" id="from-text">{{ scroller.from_sender_name }}</h2>
     </section>
 </main>
 {% endblock %}
 
 {% block footer%}
 <footer>
-      <p>&copy; 2022 have a nice wee day. all rights reserved.<span><a href='/legal'>legal notices</a><span></p>
+      <p class="text_small">&copy; 2022 have a nice wee day. all rights reserved.<span><a href='/legal'>legal notices</a><span></p>
       <a href="/"><button id="pass-it-on" >pass it on</button></a>
 </footer>
 {% endblock %}
