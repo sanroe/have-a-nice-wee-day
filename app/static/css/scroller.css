@@ -97,6 +97,8 @@ a:hover {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .edit-header h1 {
@@ -113,8 +115,9 @@ footer {
     padding-bottom: 1rem;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: top;
+    flex-wrap: wrap-reverse;
     padding-left: 16px; /* mobile-first Material Design */
     padding-right: 16px; /* mobile-first Material Design */
 }
@@ -133,6 +136,7 @@ footer button {
     display: inline-block;
     border-radius: 15px;
     transition: all 200ms ease-in;
+    margin-left: 2rem;
 }
 
 footer button:hover {
@@ -143,12 +147,20 @@ footer button:hover {
 /* SECTIONS */
 
 .frame {
-    height: 100vh;
+    min-height: 100vh;
     scroll-snap-align: start;
+}
+
+.mid-frame {
+    min-height: 50vh;
 }
 
 #one-intro {
     position: relative;
+}
+
+#one-intro h2, #seven-fin h2 {
+    font-size: 2.369rem; /* size-down for mobile-first */
 }
 
 #four-line-one {
@@ -166,22 +178,21 @@ footer button:hover {
 
 #seven-fin {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#seven-fin h3 {
-    text-align: center;
-    font-size: 3rem;
 }
 
 #one-intro h2 {
     padding-top: 15vh;
+    z-index: 1;
+}
+
+.first-block {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 #one-intro, #two-quick, #three-visual, #four-line-one, #five-line-two, #six-line-three p {
-    font-size: 2.369rem; /* same as h3 for visual presence but retain as p for correct hierarchy */
+    font-size: 1.777rem; /* same as h4 for visual presence but retain as p for correct hierarchy */
 }
 
 .intro-text {
@@ -221,6 +232,11 @@ footer button:hover {
     width: 80vw;
     max-width: 600px;
     padding: 1rem;
+    margin: auto;
+}
+
+#from-text {
+    margin-bottom: 10rem;
 }
 
 /* TEXT ALIGNMENT CLASSES */
@@ -231,6 +247,10 @@ footer button:hover {
 
 .text_left {
     text-align: left;
+}
+
+.padding_right {
+    padding-right: 1rem;
 }
 
 /* BREAKPOINTS */
@@ -245,6 +265,19 @@ footer button:hover {
     .edit-header h1 {
         padding-right: 32px;
     }
+
+    #one-intro, #two-quick, #three-visual, #four-line-one, #five-line-two, #six-line-three p {
+        font-size: 2.369rem; /* same as h3 for visual presence but retain as p for correct hierarchy */
+    }
+
+    #one-intro h2, #seven-fin h2 {
+        font-size: 3.157rem; /* size backup */
+}
+
+    footer {
+        justify-content: space-between;
+    }
+    
 }
 
 /* laptop */

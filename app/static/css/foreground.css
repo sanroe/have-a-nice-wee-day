@@ -298,7 +298,8 @@ div.bud-two {
 /* SEASONAL ARTIFACT C */
 
 .tree-graphic {
-    height: 40vh;
+    width: 80vw;
+    margin: 2rem auto;
 }
 
 #flowers>* {
@@ -338,3 +339,30 @@ div.bud-two {
     transform: translateY(0);
     opacity: 1;
 }
+
+/* BREAKPOINTS */
+
+/* tablet */
+@media (min-width: 600px) {
+    .tree-graphic {
+        width: 60vw;
+    }
+    
+}
+
+/* laptop */
+@media (min-width: 1240px) {
+    .tree-graphic {
+        width: 50vw;
+    }
+}
+
+/* desktop */
+@media (min-width: 1440px) {
+    .tree-graphic {
+        width: 35vw;
+    }
+
+}
+
+
