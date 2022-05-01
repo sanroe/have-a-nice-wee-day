@@ -63,12 +63,6 @@ h5 {
     font-size: 0.75rem;
 }
 
-/* END- TYPE SCALE SETTINGS */ 
-
-.landing-body {
-    max-height: 100vh;
-}
-
 /* HEADER */
 
 header {
@@ -92,14 +86,29 @@ header {
 a {
     text-decoration: none;
     color: inherit;
-    transition: color 0.5s, font-weight 1s;
+    transition: color 0.5s;
     transition-timing-function: ease-in;
 }
 
 a:hover {
     color: white;
-    font-weight: 500;
 }
+
+/* FOOTER */
+
+footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: right;
+}
+
+.footer-fixed {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+}
+
+/* FORMS AND INPUT */
 
 input {
     font-family: inherit;
@@ -125,71 +134,10 @@ form div.center {
     align-items: center;
 }
 
-footer {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    text-align: right;
-}
-
-.footer-fixed {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
-}
-
-.hide-overflow {
-    overflow: hidden;
-}
-
-#hero-img {
-    height: 70vh;
-    width: auto;
-}
-
-#for-custom-haiku {
-    display: none;
-    text-align: center;
-}
-
 textarea {
     resize: none;
     font-family: inherit;
     padding: 0.5rem;
-}
-
-#lets-go {
-    margin-left: 3rem;
-    height: 2rem;
-    background-image: url('../img/hand-arrow.svg');
-    background-repeat: no-repeat;
-    transition: background-image 100ms ease-in-out;
-}
-
-#lets-go:hover {
-    height: 2.72rem;
-    background-image: url('../img/hand-arrow-bird.svg');
-    background-repeat: no-repeat;
-}
-
-.homepage {
-    background-image: url('../img/char-1.svg');
-    background-repeat: no-repeat;
-    height: 70vh;
-    background-position: 20% 20vh;
-    min-height: 500px;
-}
-
-.landing {
-    margin-left: 30%;
-    margin-top: 10%;
-}
-
-#someone-text {
-    margin-left: 1rem;
-}
-
-#day-text {
-    margin-left: 2rem;
 }
 
 input[type=submit] {
@@ -212,59 +160,6 @@ input[type=submit]:hover {
     padding-top: 1rem;
     color: tomato;
     text-align: center;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.create div {
-    margin-top: 1rem;
-}
-
-.success {
-    text-align: center;
-}
-
-.success svg {
-    height: 2rem;
-}
-
-.success svg:hover {
-    fill: white;
-}
-
-.success button {
-    background-color: pink;
-    font-family: inherit;
-    color: white;
-    border: none;
-    padding: 10px;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 10px;
-}
-
-.success button:hover {
-    background-color: darkmagenta;
-}
-
-.success input[type=text] {
-    width: 90vw;
-    max-width: 450px;
-}
-
-#register-text {
-    font-size: 0.9rem;
-    text-align: center;
-    width: 60%;
-    margin: 2rem auto;
-}
-
-.link-underline {
-    text-decoration: underline;
-    text-decoration-color: white;
-    text-decoration-thickness: 2px;
 }
 
 .login-form, .register-form, .update-details-form {
@@ -303,9 +198,136 @@ input[type=submit]:hover {
     margin: auto;
 }
 
-.success-register {
-    margin-bottom: 2rem;
+#long-message-count {
+    color: gray;
+    margin-top: -1rem;
+    font-size: 0.7rem;
+    width: 100%;
+    text-align: right;
 }
+
+/* TEXT CLASSES */
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-smaller {
+    font-size: 0.7rem;
+}
+
+.text-grey {
+    color: gray;
+}
+
+.link-underline {
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-decoration-thickness: 2px;
+}
+
+/* GENERAL CLASSES */
+
+.hide-overflow {
+    overflow: hidden;
+}
+
+/* LANDING PAGE STYLES */
+
+.landing-body {
+    max-height: 100vh;
+}
+
+#hero-img {
+    height: 70vh;
+    width: auto;
+}
+
+#lets-go {
+    margin-left: 3rem;
+    height: 2rem;
+    background-image: url('../img/hand-arrow.svg');
+    background-repeat: no-repeat;
+    transition: background-image 100ms ease-in-out;
+}
+
+#lets-go:hover {
+    height: 2.72rem;
+    background-image: url('../img/hand-arrow-bird.svg');
+    background-repeat: no-repeat;
+}
+
+.homepage {
+    background-image: url('../img/char-1.svg');
+    background-repeat: no-repeat;
+    height: 70vh;
+    background-position: 20% 20vh;
+    min-height: 500px;
+}
+
+.landing {
+    margin-left: 30%;
+    margin-top: 10%;
+}
+
+#someone-text {
+    margin-left: 1rem;
+}
+
+#day-text {
+    margin-left: 2rem;
+}
+
+/* CREATE PAGE ADJUSTMENTS */
+
+#for-custom-haiku {
+    display: none;
+    text-align: center;
+}
+
+.create div {
+    margin-top: 1rem;
+}
+
+/* SUCCESS PAGE ADJUSTMENTS */
+
+.success {
+    text-align: center;
+}
+
+.success svg {
+    height: 2rem;
+}
+
+.success svg:hover {
+    fill: white;
+}
+
+.success button {
+    background-color: pink;
+    font-family: inherit;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.success button:hover {
+    background-color: darkmagenta;
+}
+
+.success input[type=text] {
+    width: 90vw;
+    max-width: 450px;
+}
+
+/* EDIT PAGE ADJUSTMENTS */
 
 .edit-header {
     margin: 0;
@@ -320,13 +342,20 @@ input[type=submit]:hover {
     text-align: right;
 }
 
-#long-message-count {
-    color: gray;
-    margin-top: -1rem;
-    font-size: 0.7rem;
-    width: 100%;
-    text-align: right;
+/* REGISTER PAGE ADJUSTMENTS */
+
+#register-text {
+    font-size: 0.9rem;
+    text-align: center;
+    width: 60%;
+    margin: 2rem auto;
 }
+
+.success-register {
+    margin-bottom: 2rem;
+}
+
+/* LEGAL PAGE ADJUSTMENTS */
 
 .footer_legal {
     padding-left: 1rem;
@@ -336,17 +365,7 @@ input[type=submit]:hover {
     margin-bottom: 2rem;
 }
 
-.text-right {
-    text-align: right;
-}
-
-.text-smaller {
-    font-size: 0.7rem;
-}
-
-.text-grey {
-    color: gray;
-}
+/* DELETE ACCOUNT PAGE ADJUSTMENTS */
 
 #delete-account-form {
     display: inline-flex;
@@ -361,7 +380,9 @@ input[type=submit]:hover {
     min-width: 150px; 
 }
 
+/* ----------- */
 /* BREAKPOINTS */
+/* ----------- */
 
 /* tablet */
 @media (min-width: 600px) {
