@@ -266,12 +266,8 @@ input[type=submit]:hover {
 /* LANDING PAGE STYLES */
 
 .landing-body {
+    min-height: 768px;
     max-height: 100vh;
-}
-
-#hero-img {
-    height: 70vh;
-    width: auto;
 }
 
 #lets-go {
@@ -293,7 +289,7 @@ input[type=submit]:hover {
     background-image: url('../img/char-1.svg');
     background-repeat: no-repeat;
     height: 70vh;
-    background-position: 20% 20vh;
+    background-position: -20% 20vh; /* mobile first */
     min-height: 500px;
 }
 
@@ -445,6 +441,10 @@ input[type=submit]:hover {
         padding-right: 32px; /* Material Design */
     }
 
+    .homepage {
+        background-position: 20% 20vh;
+    }
+
 }
 
 /* laptop */
@@ -467,5 +467,61 @@ input[type=submit]:hover {
 @media (min-width: 1440px) {
     .create {
         width: 50%;
+    }
+
+    .homepage {
+        height: 90vh;
+        background-position: 30% 15vh;
+    }
+}
+
+/* height breakpoints for landing page */
+@media (min-height: 1px) {
+    .landing-body {
+        overflow: visible;
+    }
+    
+    .landing h1 {
+        font-size: 2rem; /* reduce for small viewports */
+    }
+
+    #lets-go {
+        margin-top: 2rem;
+        height: 2rem;
+    }
+    
+    #lets-go:hover {
+        height: 2.72rem;
+    }
+
+    .footer-fixed {
+        position: relative;
+        right: 0;
+        margin-top: 2rem;   
+    }
+}
+
+@media (min-height: 600px) {
+    .landing h1 {
+        font-size: 4.209rem; /* reset to normal */
+    }
+
+    #lets-go {
+        margin-top: 3rem; /* reset to normal */
+        height: 3rem; /* reset to normal */
+    }
+    
+    #lets-go:hover {
+        height: 3.72rem; /* reset to normal */
+    }
+
+    .landing-body {
+        overflow: hidden; /* reset to normal */
+    }
+
+    .footer-fixed { /* reset to normal */
+        position: absolute;
+        bottom: 0;
+        right: 5%;
     }
 }
